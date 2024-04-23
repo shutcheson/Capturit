@@ -1,0 +1,25 @@
+// _colours.scss
+$colour__grey__white: #fafafa;
+$colour__grey__100: #ededed;
+$colour__grey__200: #c8c8c8;
+$colour__grey__300: #afafaf;
+$colour__grey__400: #969696;
+$colour__grey__500: #7d7d7d;
+$colour__grey__600: #646464;
+$colour__grey__700: #4b4b4b;
+$colour__grey__800: #323232;
+$colour__grey__900: #191919;
+$colour__grey__black: #000000;
+
+$colour_brand_primary: #f75200;
+$colour_brand_secondary: rgb(75, 0, 128);
+
+$colour_page_background: #f8f8f8;
+
+//Fonts
+$colour_text_primary: $colour__grey__black;
+$colour_text_secondary: $colour__grey__900;
+
+//Drop shadows
+$colour_text_shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+$shadow-key-features-box: -2px 7px 24px rgba(0, 0, 0, 0.6);

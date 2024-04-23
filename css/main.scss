@@ -1,0 +1,791 @@
+@import "colours";
+@import "typography";
+
+// Variables
+$desktop-x-large: 3480px;
+$desktop-large: 2560px;
+$desktop-medium: 1920px;
+$desktop-small: 1440px;
+$smartphone-large-portrait: 1080px;
+
+$font-stack: "Montserrat", sans-serif;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  background-color: $colour_page_background;
+}
+
+//dfsnfksdz
+/* Webkit Scrollbar custom styles */
+::-webkit-scrollbar {
+  width: 12px; /* Adjust the width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background-color: $colour_page_background; /* No background color for the scrollbar track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $colour__grey__400; /* Thumb color */
+  border-radius: 30px; /* Rounded corners for the thumb */
+}
+
+/* Optional: Style for scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: darken($colour__grey__400, 10%);
+}
+
+.cta {
+  background-color: $colour__grey__black;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 6rem !important;
+  border-radius: 40px;
+  font-size: 1.8rem;
+  cursor: pointer; // Indicates it's clickable
+
+  // Transition for smooth effect on press and hover
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+
+  // Elevated look with box shadow
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+
+  &:hover {
+    background-color: darken(
+      $colour__grey__black,
+      10%
+    ); // Slightly darken on hover for feedback
+    // Optionally, you could slightly increase the button or shadow size here
+  }
+
+  &:active {
+    // Combines scaling down and slight downward movement
+    transform: scale(0.95) translateY(6px);
+    // Lighten shadow to simulate the button being pressed down
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.section {
+  &__heading {
+    color: $colour_brand_secondary;
+    font-size: 2.6rem;
+    margin-bottom: 120px;
+    color: black; // Keeping text color black
+    max-width: 1200px !important;
+  }
+}
+
+//Top Nav Bar
+.top-navbar {
+  background-color: rgba(243, 243, 243, 0.9); // White with slight transparency
+  backdrop-filter: blur(8px); // Blurry effect
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  // border-bottom: 1px solid #000000;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 999;
+
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 50px;
+
+    .nav-logo {
+      font-size: 20px;
+      color: $colour_text_primary;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: space-between; // spaces out the links
+      flex-grow: 1; // Allows the nav-links container to grow
+      max-width: 30%;
+
+      a {
+        color: $colour_text_secondary;
+        font-weight: 500;
+        text-decoration: none;
+        font-size: 16px;
+        transition: color 0.1s ease-in-out, font-weight 0.1s ease-in-out; // Extended transition duration with easing
+
+        &:hover {
+          color: $colour_text_primary;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+//Hero Section
+// #portrait-party {
+//   top: -12%;
+//   left: 35%;
+//   width: 24%;
+//   height: auto;
+// }
+
+// #portrait-wedding {
+//   width: 25%;
+//   height: auto;
+//   top: 0;
+//   left: 0;
+// }
+
+#landscape-trip {
+  height: auto;
+  width: 33%;
+  top: 18%;
+  right: 0;
+}
+
+#landscape-festival {
+  height: auto;
+  width: 33%;
+  right: 14%;
+  bottom: 6%;
+}
+
+#hero-mobile {
+  width: 46%;
+  height: auto;
+  left: 3%;
+  bottom: 0%;
+}
+
+.countdown {
+  &__wrapper {
+    position: absolute;
+    top: 66%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+
+  &__timer {
+    &--first {
+      font-size: 4vw;
+      font-family: $font-stack; 
+      color: $colour_brand_primary; 
+      font-weight: 700;
+      text-shadow: $colour_text_shadow; 
+      white-space: nowrap; // Prevent line breaks
+
+      &_time-unit {
+        display: inline-block;
+        width: 2em; 
+        text-align: center;
+      }
+    }
+  }
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  max-height: 1080px;
+
+  &__image-container {
+    position: absolute;
+    width: 25%;
+    height: auto;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+  }
+
+  &__heading {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 10px 0;
+    left: 6%;
+
+    &--title {
+      font-size: 160px !important;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 300;
+      transform: scaleY(1.2);
+      color: black;
+    }
+  }
+
+  &__tagline--container {
+    font-size: 48px !important;
+    font-weight: 600;
+    width: 50%;
+    display: flex;
+    justify-content: right;
+    margin-top: 170px;
+    margin-bottom: 30px;
+    text-align: right;
+    color: $colour_brand_secondary;
+  }
+
+  &__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    max-width: 1700px;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    z-index: 999;
+  }
+
+  &__cta--container {
+    width: 50%;
+    display: flex;
+    justify-content: right;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    text-align: right;
+    color: $colour_brand_secondary;
+  }
+
+  // Countdown timer
+  .countdown__wrapper {
+    width: 100%; // Each child occupies full width of the container
+    display: flex; // Each row is also a flex container
+    justify-content: center; // Content in each row is centered horizontally
+    text-align: center; // Text alignment is centered
+    padding: 10px 0;
+    top: 45%;
+  }
+}
+
+// Intro Section Styles
+.intro {
+  padding: 0;
+
+  &__container {
+    height: 100vh;
+    max-height: 1080px;
+    width: 100%;
+    margin: 0 auto; // Centering the container.
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    max-width: 1200px;
+    position: relative; // Positioning the content relatively
+    left: -5%; // Shifts content to the left, adjust percentage as needed
+  }
+
+  &__title {
+    font-size: 3rem;
+    margin-bottom: 40px;
+    color: $colour_brand_secondary;
+    position: relative; // Ensures title positioning is adjustable if needed.
+    left: 0; // Keeps title centered in its original place; adjust if necessary.
+  }
+
+  &__image,
+  &__text {
+    position: relative; // Allows for direct manipulation of position if finer adjustments are needed.
+  }
+
+  &__image {
+    flex: 1;
+    max-width: 33.333%;
+    text-align: right;
+    padding-right: 40px;
+
+    img {
+      max-width: 90%;
+      height: auto;
+    }
+  }
+
+  &__text {
+    flex: 2;
+    max-width: 66.666%;
+    margin-bottom: 8%;
+  }
+
+  &__description {
+    font-size: 20px;
+    color: $colour_text_secondary;
+    margin-bottom: 40px;
+    line-height: 1.5;
+    text-align: justify;
+  }
+}
+
+/*
+  Key features Section
+  */
+
+// Key features Section Styles
+.key-features {
+  padding: 0;
+
+  &__section {
+    height: 138vh !important;
+    max-height: 1470px;
+    position: relative;
+    z-index: 1;
+    background-image: url("../img/key-features-background.png");
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: center top;
+  }
+
+  &__container {
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding-top: 8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 3rem;
+    width: 80%;
+    max-width: 1200px;
+  }
+
+  &__box {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-shadow: $shadow-key-features-box;
+  }
+
+  &__box-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+
+    .emphasize {
+      color: $colour_brand_secondary; // Apply the secondary brand color to emphasized text
+    }
+  }
+
+  &__box-description {
+    font-size: 1.1rem;
+    color: $colour_text_secondary;
+    line-height: 1.4;
+    font-weight: 500;
+  }
+}
+
+#key-features-heading {
+  color: $colour__grey__100;
+}
+
+// Sign up Section Styles
+.sign-up {
+  padding: 0;
+
+  &__container {
+    height: 90vh;
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto; // Centering the container.
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    max-width: 1200px;
+    position: relative; // Positioning the content relatively
+  }
+
+  &__image,
+  &__text {
+    position: relative; // Allows for direct manipulation of position if finer adjustments are needed.
+  }
+
+  &__image {
+    flex: 1;
+    max-width: 33.333%;
+    text-align: right;
+    padding-right: 40px;
+
+    img {
+      max-width: 97%;
+      height: auto;
+    }
+  }
+
+  &__text {
+    flex: 2;
+    max-width: 66.666%;
+    margin-bottom: 20%;
+  }
+
+  &__description {
+    font-size: 20px;
+    color: $colour_text_secondary;
+    margin-bottom: 40px;
+    line-height: 1.5;
+    text-align: justify;
+    width: 90%;
+    font-weight: 600;
+  }
+
+  &__form {
+    display: flex;
+    margin: 1rem 0;
+    width: 80%;
+    border: 1px solid $colour__grey__900;
+    border-radius: 40px;
+
+    input,
+    button {
+      text-decoration: none;
+      padding: 0.5rem 3.4rem; // Adjusted padding for uniformity
+      font-size: 18px;
+      cursor: pointer;
+      border: 2px black;
+      outline: none; // Removes the default focus outline
+      border-radius: 40px;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+      font-family: Arial, sans-serif; // Use consistent font
+    }
+
+    // Individual styling for the input
+    input {
+      background-color: transparent;
+      border: 2px $colour__grey__900;
+      color: $colour__grey__black; // Input text color
+      border-top-right-radius: 0; // Aligns with the button
+      border-bottom-right-radius: 0;
+      flex-grow: 1; // Allows input to grow and fill available space
+    }
+
+    // Individual styling for the button, using variables from CTA
+    button {
+      background-color: $colour__grey__black;
+      color: #fff; // Presumed contrast color
+      border-top-left-radius: 0; // Aligned edges with the input
+      border-bottom-left-radius: 0;
+      text-shadow: $colour_text_shadow;
+
+      // Button hover state
+      &:hover {
+        background-color: darken($colour__grey__black, 10%);
+      }
+    }
+  }
+
+  &__bottom-navbar {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: $colour_page_background;
+    border-top: 1px solid $colour__grey__500;
+
+    .nav-container {
+      display: flex;
+      justify-content: flex-start;
+      padding: 0 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 50px;
+
+      .nav-links {
+        display: flex;
+        width: 33%;
+        a {
+          color: $colour_text_secondary;
+          text-decoration: none;
+          font-size: 16px;
+          margin-right: 40%;
+          &:last-child {
+            margin-right: 0;
+          }
+
+          &:hover {
+            color: $colour_text_primary;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
+
+.countdown {
+  &__timer {
+    &--second {
+      position: absolute;
+      top: 33%;
+      left: 35%;
+      max-width: 33.333%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      font-size: 1rem;
+      font-family: $font-stack; 
+      color: $colour_brand_primary; 
+      font-weight: 700;
+      text-shadow: $colour_text_shadow; 
+      white-space: nowrap; 
+
+      &_time-unit {
+        display: inline-block;
+        width: 2em; 
+        text-align: center;
+      }
+    }
+  }
+}
+
+//
+// Banner Section
+//
+
+$fullVH: 100vh;
+$unitHeight: $fullVH / 8; // Every unit height represents 1/8th of the total height.
+
+.banner {
+
+  &__heading {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; 
+    text-align: left;
+    padding: 10px 0;
+
+    &--title {
+      font-size: 9.4rem !important;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 300;
+      transform: scaleY(1.2);
+      color: black;
+      margin-top: 30px;
+    }
+  }
+
+  &__tagline {
+    font-size: 2.6rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: left;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    text-align: left;
+    color: rgb(75, 0, 128);
+  }
+
+  &__cta {
+    background-color: $colour__grey__black;
+    color: $colour__grey__white;
+    text-decoration: none;
+    padding: 6px 70px 6px !important;
+    border-radius: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+
+    &:active {
+      // Combines scaling down and slight downward movement
+      transform: scale(0.95) translateY(6px);
+      // Lighten shadow to simulate the button being pressed down
+      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+    }
+  }
+  &__section {
+    position: relative; 
+    width: 100%;
+    height: $fullVH;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+  }
+
+  &__container {
+    width: 90%; 
+    height: $fullVH;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__row {
+    display: flex;
+    width: 100%;
+
+    &--2x {
+      height: $unitHeight * 2;
+    }
+    &--1x {
+      height: $unitHeight * 1;
+    }
+    &--3x {
+      height: $unitHeight * 3;
+    }
+  }
+
+  &__box {
+    // border: 1px solid black;
+    flex-grow: 1;
+    height: 100%; // Full inherited height from the row
+
+    &--half {
+      width: 50%; // Half of the parent row's width
+    }
+  }
+}
+
+#banner__box--image {
+  height: 100%; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  img {
+    height: 145%; 
+    width: auto; 
+  }
+}
+
+
+
+.countdown {
+  &__wrapper {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 100%;
+    width: 100%;
+  }
+
+  &__timer {
+    &--third {
+      position: relative;
+      max-width: 100%;
+      font-size: 5rem;
+      color: $colour_brand_primary;
+      font-weight: 700;
+      text-shadow: $colour_text_shadow;
+      white-space: nowrap;
+      top: 50%;
+
+      &_time-unit {
+        display: inline-block;
+        width: 2em; // Fixed width for each time unit
+        text-align: center;
+      }
+    }
+  }
+}
+
+#portrait-wedding {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 23%;
+  height: auto;
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: top left;
+    border-radius: 4px;
+  }
+}
+
+#portrait-party {
+  position: absolute;
+  top: -13%;
+  left: 35%;
+  z-index: -1;
+  width: 24%;
+  height: auto;
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+#landscape-trip {
+  position: absolute; 
+  top: 20%; 
+  right: 0; 
+  width: 33%; 
+  height: auto; 
+  z-index: -1; 
+
+  img {
+    width: 100%; 
+    height: auto; 
+    object-fit: cover; 
+    object-position: center; 
+  }
+}
+
+#landscape-festival {
+  position: absolute;  
+  bottom: 6%;          
+  right: 13%;         
+  width: 33%;         
+  height: auto;        
+  z-index: -2;        
+
+  img {
+    width: 100%;       
+    height: auto;     
+    object-fit: cover;
+    object-position: center; 
+  }
+}
