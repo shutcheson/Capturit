@@ -1,0 +1,4 @@
+Terminal:
+
+cd ___ : Goes forward into the folder.
+sass --watch main.scss style.css : Compiles sass and watches for changes, automatically updating the changes.
