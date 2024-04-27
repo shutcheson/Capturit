@@ -1,0 +1,46 @@
+// Define Breakpoints as Variables
+$desktop-x-large: 3480px;
+$desktop-large: 2560px;
+$desktop-medium: 1920px;
+$desktop-small: 1440px;
+$tablet-landscape: 1280px;
+
+// Define the 'respond-to' mixin
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == tablet-landscape {
+    @media (max-width: $tablet-landscape) {
+      @content;
+    }
+  } @else if $breakpoint == desktop-small {
+    @media (max-width: $desktop-small) {
+      @content;
+    }
+  } @else if $breakpoint == desktop-medium {
+    @media (max-width: $desktop-medium) {
+      @content;
+    }
+  } @else if $breakpoint == desktop-large {
+    @media (max-width: $desktop-large) {
+      @content;
+    }
+  } @else if $breakpoint == desktop-x-large {
+    @media (max-width: $desktop-x-large) {
+      @content;
+    }
+  }
+}
+
+// Breakpoint: Medium desktop
+@include respond-to(desktop-medium) {
+}
+
+// Breakpoint: Small desktop
+@include respond-to(desktop-small) {
+  font-size: 2.1rem;
+}
+
+// Breakpoint: Tablet landscape
+@include respond-to(tablet-landscape) {
+  height: 32px;
+}

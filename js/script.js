@@ -118,5 +118,38 @@ function easeInOutCubic(t, b, c, d) {
 }
 
 //
-// Key features link anchor. Slides slightly further to centre info
+// Banner arrow scroll
 //
+document.addEventListener("DOMContentLoaded", function () {
+  const scrollDownButton = document.getElementById("scroll-down-arrow");
+
+  scrollDownButton.addEventListener("click", function () {
+    const aboutSection = document.getElementById("about-section");
+    smoothScrollTo(aboutSection, 1000); // Adjust the duration as needed (in milliseconds)
+  });
+
+  function smoothScrollTo(target, duration) {
+    const targetPosition = target.getBoundingClientRect().top;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    let startTime = null;
+
+    function animation(currentTime) {
+      if (startTime === null) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const progress = Math.min(timeElapsed / duration, 1);
+      const ease = easeInOutCubic(progress);
+      window.scrollTo(0, startPosition + distance * ease);
+
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation);
+      }
+    }
+
+    requestAnimationFrame(animation);
+  }
+
+  function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+  }
+});

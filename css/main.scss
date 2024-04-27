@@ -6,10 +6,16 @@ $desktop-x-large: 3480px;
 $desktop-large: 2560px;
 $desktop-medium: 1920px;
 $desktop-small: 1440px;
+$tablet-landscape: 1280px;
 
 // Define the 'respond-to' mixin
+
 @mixin respond-to($breakpoint) {
-  @if $breakpoint == desktop-small {
+  @if $breakpoint == tablet-landscape {
+    @media (max-width: $tablet-landscape) {
+      @content;
+    }
+  } @else if $breakpoint == desktop-small {
     @media (max-width: $desktop-small) {
       @content;
     }
@@ -88,23 +94,81 @@ body {
     color: $colour_brand_secondary;
     font-size: 2.6rem;
     margin-bottom: 120px;
-    color: black; // Keeping text color black
-    max-width: 1200px !important;
+    color: $colour__grey__900; // Keeping text color black
 
-    // Adjustments for desktop-small
+    // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
-      font-size: 2.1rem;
-      margin-bottom: 50px;
+      // margin-bottom: 50px !important;
+    }
+
+    // Breakpoint: Tablet landscape
+    @include respond-to(tablet-landscape) {
+      margin-bottom: 40px;
     }
   }
 }
 
+.scroll-down-arrow-container {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: transparent;
+
+  // Breakpoint: Tablet landscape
+  @include respond-to(tablet-landscape) {
+    left: 48%;
+  }
+}
+
+.scroll-down-arrow {
+  width: 160px; /* Adjusted width */
+  height: 40px; /* Adjusted height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+
+  // Breakpoint: Tablet landscape
+  @include respond-to(tablet-landscape) {
+    width: 103px;
+  }
+
+  svg path {
+    stroke: $colour__grey__900;
+    stroke-width: 1.2px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    box-shadow: 0 2px 4px $colour__grey__500; /* Shadow on the arrow */
+    animation: bounce 1.4s infinite ease-in-out; /* Adjusted animation duration */
+    width: 100%;
+    height: 80%;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.4) !important;
+  }
+  50% {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4) !important;
+  }
+}
+
+/* Click down effect */
+.scroll-down-arrow.clicked {
+  transform: translateY(-5px);
+}
+
 //Top Nav Bar
 .top-navbar {
-  background-color: rgba(243, 243, 243, 0.9); // White with slight transparency
-  backdrop-filter: blur(8px); // Blurry effect
+  background-color: rgba(243, 243, 243, 0.3);
+  backdrop-filter: blur(2px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  // border-bottom: 1px solid #000000;
   position: fixed;
   width: 100%;
   top: 0;
@@ -120,8 +184,14 @@ body {
     margin: 0 auto;
     height: 50px;
 
+    // Breakpoint: Tablet landscape
+    @include respond-to(tablet-landscape) {
+      padding: 0 20px;
+      height: 36px;
+    }
+
     .nav-logo {
-      font-size: 20px;
+      font-size: 16px;
       color: $colour_text_primary;
       text-decoration: none;
     }
@@ -137,8 +207,12 @@ body {
         font-weight: 500;
         text-decoration: none;
         font-size: 16px;
-        transition: color 0.1s ease-in-out, font-weight 0.1s ease-in-out; // Extended transition duration with easing
+        transition: color 0.1s ease-in-out, font-weight 0.1s ease-in-out;
 
+        // Breakpoint: Tablet landscape
+        @include respond-to(tablet-landscape) {
+          font-size: 13px;
+        }
         &:hover {
           color: $colour_text_primary;
           font-weight: 600;
@@ -151,7 +225,9 @@ body {
 //
 // Banner Section
 //
-$unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total height.
+$unitHeight: calc(110vh / 8);
+
+// Every unit height represents 1/8th of the total height.
 
 .banner {
   &__heading {
@@ -163,10 +239,9 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
     text-align: left;
     padding: 10px 0;
 
-    // Apply breakpoint-specific adjustments using the respond-to mixin
+    // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
       padding: 5px 0;
-      // justify-content: center; // Center the content vertically
     }
 
     &--title {
@@ -177,11 +252,21 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
       color: black;
       margin-top: 100px;
 
-      // Adjustments for desktop-small
+      // Breakpoint: Small desktop
       @include respond-to(desktop-small) {
-        font-size: 8rem;
+        position: relative;
+        font-size: 7.8rem;
         transform: scaleY(1.4);
-        margin-top: 80px;
+        margin-top: 46px;
+        margin-left: 13px;
+      }
+
+      // Breakpoint: Tablet landscape
+      @include respond-to(tablet-landscape) {
+        font-size: 5.8rem;
+        transform: scaleY(1.5);
+        margin-top: 94px;
+        margin-left: 87px;
       }
     }
   }
@@ -196,10 +281,15 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
     text-align: left;
     color: rgb(75, 0, 128);
 
-    // Adjustments for desktop-small
+    // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
-      font-size: 2.4rem;
-      margin-bottom: 10px;
+      font-size: 2.1rem;
+      margin-bottom: 19px;
+    }
+    // Breakpoint: Tablet landscape
+    @include respond-to(tablet-landscape) {
+      font-size: 1.8rem;
+      margin-bottom: 14px;
     }
   }
 
@@ -216,9 +306,19 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
 
     &:active {
       // Combines scaling down and slight downward movement
-      transform: scale(0.95) translateY(6px);
+      transform: scale(0.95) translateY(3px);
       // Lighten shadow to simulate the button being pressed down
       box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+    }
+
+    // Breakpoint: Small desktop
+    @include respond-to(desktop-small) {
+      padding: 5px 53px 6px !important;
+      font-size: 1rem;
+    }
+    // Breakpoint: Tablet landscape
+    @include respond-to(tablet-landscape) {
+      padding: 4px 38px 5px !important;
     }
   }
   &__section {
@@ -237,7 +337,7 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
     display: flex;
     flex-direction: column;
 
-    // Adjustments for desktop-small
+    // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
       width: 84%;
     }
@@ -279,6 +379,17 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
   align-items: flex-start; // Aligns children horizontally to the left
   height: 59%; // Ensures it takes full available height of its parent
   width: 100%; // Ensures it occupies full width to properly align contents to the left
+
+  // Breakpoint: Small desktop
+  @include respond-to(desktop-small) {
+    margin-left: -26px;
+    margin-top: -28px;
+  }
+  // Breakpoint: Tablet landscape
+  @include respond-to(tablet-landscape) {
+    margin-top: -8px;
+    // margin-left: -20px;
+  }
 }
 
 #banner__box--image {
@@ -289,6 +400,12 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
   img {
     height: 145%;
     width: auto;
+    // Breakpoint: Tablet landscape
+    @include respond-to(tablet-landscape) {
+      height: 132%;
+      bottom: 10px;
+      position: relative;
+    }
   }
 }
 
@@ -311,9 +428,13 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
       text-shadow: $colour_text_shadow;
       white-space: nowrap;
 
-      // Adjustments for desktop-small
+      // Breakpoint: Small desktop
       @include respond-to(desktop-small) {
-        font-size: 4.5rem;
+        font-size: 3.8rem;
+      }
+      // Breakpoint: Tablet landscape
+      @include respond-to(tablet-landscape) {
+        font-size: 3.1rem;
       }
 
       &_time-unit {
@@ -333,9 +454,14 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
   width: 23%;
   height: auto;
 
-  // Adjustments for desktop-small
+  // Breakpoint: Small desktop
   @include respond-to(desktop-small) {
     width: 25%;
+  }
+
+  // Breakpoint: Tablet landscape
+  @include respond-to(tablet-landscape) {
+    width: 22%;
   }
 
   img {
@@ -352,11 +478,18 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
   top: -13%;
   left: 35%;
   z-index: -1;
-  width: 24%;
+  width: 23%;
   height: auto;
 
-  // Adjustments for desktop-small
+  // Breakpoint: Small desktop
   @include respond-to(desktop-small) {
+    top: -7%;
+  }
+  // Breakpoint: Tablet landscape
+  @include respond-to(tablet-landscape) {
+    top: -7%;
+    left: 34%;
+    width: 20%;
   }
 
   img {
@@ -375,9 +508,14 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
   height: auto;
   z-index: -1;
 
-  // Adjustments for desktop-small
+  // Breakpoint: Small desktop
   @include respond-to(desktop-small) {
     width: 34%;
+  }
+  // Breakpoint: Tablet landscape
+  @include respond-to(tablet-landscape) {
+    width: 33%;
+    top: 21%;
   }
 
   img {
@@ -396,11 +534,17 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
   height: auto;
   z-index: -2;
 
-  // Adjustments for desktop-small
+  // Breakpoint: Small desktop
   @include respond-to(desktop-small) {
+    bottom: 11%;
+    right: 13%;
+    width: 35%;
+  }
+  // Breakpoint: Tablet landscape
+  @include respond-to(tablet-landscape) {
     bottom: 8%;
-    right: 11%;
-    width: 37%;
+    right: 14%;
+    width: 32%;
   }
 
   img {
@@ -428,8 +572,13 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
     justify-content: center;
     align-items: center;
 
+    // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
       padding-top: 80px;
+    }
+    // Breakpoint: Tablet landscape
+    @include respond-to(tablet-landscape) {
+      padding-top: 30px;
     }
   }
 
@@ -442,9 +591,13 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
     position: relative;
     left: -4%;
 
-    // Adjustments for desktop-small
+    // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
       left: -5%;
+    }
+    // Breakpoint: Tablet landscape
+    @include respond-to(tablet-landscape) {
+      width: 76%;
     }
   }
 
@@ -455,10 +608,15 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
     max-width: 1200px !important;
     margin-bottom: 100px;
 
-    // Adjustments for desktop-small
+    // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
       font-size: 2.1rem;
       margin-bottom: 56px;
+    }
+    // Breakpoint: Tablet landscape
+    @include respond-to(tablet-landscape) {
+      font-size: 1.6rem;
+      margin-bottom: 30px;
     }
   }
 
@@ -469,14 +627,14 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
     position: relative;
     left: 0;
 
-    // Adjustments for desktop-small
+    // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
       font-size: 2.2rem;
       margin-bottom: 20px;
-    } // Adjustments for desktop-small
-    @include respond-to(desktop-small) {
-      font-size: 2.2rem;
-      margin-bottom: 20px;
+    }
+    // Breakpoint: Tablet landscape
+    @include respond-to(tablet-landscape) {
+      font-size: 1.8rem;
     }
   }
 
@@ -491,7 +649,7 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
     text-align: right;
     padding-right: 40px;
 
-    // Adjustments for desktop-small
+    // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
       padding-right: 24px;
       max-width: 82%;
@@ -505,6 +663,10 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
       @include respond-to(desktop-small) {
         max-width: 70%;
       }
+      // Breakpoint: Tablet landscape
+      @include respond-to(tablet-landscape) {
+        max-width: 64%;
+      }
     }
   }
 
@@ -513,7 +675,7 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
     max-width: 66.666%;
     margin-bottom: 8%;
 
-    // Adjustments for desktop-small
+    // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
       max-width: 60%;
     }
@@ -526,15 +688,25 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
     line-height: 1.5;
     text-align: justify;
 
-    // Adjustments for desktop-small
+    // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
       font-size: 18px;
+    }
+    // Breakpoint: Tablet landscape
+    @include respond-to(tablet-landscape) {
+      font-size: 16px;
     }
   }
 
   &__cta {
+    // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
       font-size: 20px;
+    }
+    // Breakpoint: Tablet landscape
+    @include respond-to(tablet-landscape) {
+      font-size: 16px;
+      padding: 4px 52px 5px !important;
     }
   }
 }
@@ -546,64 +718,92 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
 // Key features Section Styles
 .key-features {
   padding: 0;
+  height: 100vh;
+  overflow: visible;
 
   &__section {
-    height: 138vh !important;
-    max-height: 1470px;
+    height: 136vh;
     position: relative;
-    z-index: 1;
+    overflow: visible;
+    z-index: 888;
     background-image: url("../img/key-features-background.png");
-    background-size: 100% auto;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center top;
 
-    // Adjustments for desktop-small
+    // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
-      background-size: 110% auto;
+      background-size: 100% auto;
+      height: 136vh;
+    }
+    // Breakpoint: Tablet landscape
+    @include respond-to(tablet-landscape) {
+      height: 156vh;
     }
   }
 
   &__container {
-    height: 100vh;
+    height: 88%;
     width: 100%;
-    margin: 0;
-    padding-top: 8rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    // Adjustments for desktop-small
+    // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
-      padding-top: 7rem;
+      padding-top: 0;
+    }
+  }
+
+  &__anchor {
+    display: flex;
+    align-items: start;
+    height: 130px;
+    width: 20px;
+
+    // Breakpoint: Tablet landscape
+    @include respond-to(tablet-landscape) {
+      height: 70px;
     }
   }
 
   &__content {
+    position: relative;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 3rem;
     width: 80%;
     max-width: 1200px;
+    z-index: 1;
 
-    // Adjustments for desktop-small
+    // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
       width: 78%;
+    }
+    // Breakpoint: Tablet landscape
+    @include respond-to(tablet-landscape) {
+      width: 86%;
     }
   }
 
   &__heading {
     color: $colour_brand_secondary;
     font-size: 2.6rem;
-    margin-bottom: 120px;
+    margin-bottom: 150px;
     color: black; // Keeping text color black
     max-width: 1200px !important;
     color: $colour__grey__100;
 
-    // Adjustments for desktop-small
+    // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
       font-size: 2.1rem;
       margin-bottom: 90px;
+    }
+    // Breakpoint: Tablet landscape
+    @include respond-to(tablet-landscape) {
+      font-size: 1.5rem;
+      margin-bottom: 50px;
     }
   }
 
@@ -617,27 +817,45 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
     align-items: flex-start;
     box-shadow: $shadow-key-features-box;
 
-    // Adjustments for desktop-small
+    // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
       padding: 34px;
+    }
+    // Breakpoint: Tablet landscape
+    @include respond-to(tablet-landscape) {
+      font-size: 16px;
+      padding: 24px;
     }
   }
 
   &__box-title {
     font-size: 1.4rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 28px;
 
-    .emphasize {
-      color: $colour_brand_secondary; // Apply the secondary brand color to emphasized text
+    // Breakpoint: Tablet landscape
+    @include respond-to(tablet-landscape) {
+      font-size: 1.2rem;
+    }
+
+    .emphasise {
+      color: $colour_brand_secondary;
+      font-weight: 700;
+      letter-spacing: 100;
     }
   }
 
   &__box-description {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: $colour_text_secondary;
     line-height: 1.4;
     font-weight: 500;
+
+    // Breakpoint: Tablet landscape
+    @include respond-to(tablet-landscape) {
+      font-size: 1rem;
+      line-height: 1.3;
+    }
   }
 }
 
@@ -655,6 +873,17 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    // Breakpoint: Small desktop
+    @include respond-to(desktop-small) {
+      height: 88vh;
+    }
+
+    // Breakpoint: Tablet landscape
+    @include respond-to(tablet-landscape) {
+      width: 84%;
+      height: 84vh;
+    }
   }
 
   &__content {
@@ -665,12 +894,25 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
     max-width: 1200px;
     position: relative;
 
-    // Adjustments for desktop-small
+    // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
       width: 76%;
+      left: 3%;
+      margin-top: 60px;
+    }
+    // Breakpoint: Tablet landscape
+    @include respond-to(tablet-landscape) {
+      margin-top: 10px;
     }
   }
 
+  &__heading {
+    // Breakpoint: Tablet landscape
+    @include respond-to(tablet-landscape) {
+      margin-top: 10px;
+      height: 86vh;
+    }
+  }
   &__image,
   &__text {
     position: relative; // Allows for direct manipulation of position if finer adjustments are needed.
@@ -681,10 +923,21 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
     max-width: 33.333%;
     text-align: right;
     padding-right: 40px;
+    // Breakpoint: Tablet landscape
+    @include respond-to(tablet-landscape) {
+      padding-right: 0px;
+      text-align: right;
+    }
 
     img {
       max-width: 97%;
       height: auto;
+
+      // Breakpoint: Tablet landscape
+      @include respond-to(tablet-landscape) {
+        max-width: 86%;
+        text-align: left;
+      }
     }
   }
 
@@ -692,6 +945,16 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
     flex: 2;
     max-width: 66.666%;
     margin-bottom: 20%;
+
+    // Breakpoint: Small desktop
+    @include respond-to(desktop-small) {
+      margin-bottom: 15%;
+    }
+
+    // Breakpoint: Tablet landscape
+    @include respond-to(tablet-landscape) {
+      margin-bottom: 12%;
+    }
   }
 
   &__description {
@@ -701,7 +964,15 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
     line-height: 1.5;
     text-align: justify;
     width: 90%;
-    font-weight: 600;
+    font-weight: 500;
+
+    // Breakpoint: Tablet landscape
+    @include respond-to(tablet-landscape) {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.4;
+      margin-bottom: 46px;
+    }
   }
 
   &__form {
@@ -711,10 +982,15 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
     border: 1px solid $colour__grey__900;
     border-radius: 40px;
 
+    // Breakpoint: Tablet landscape
+    @include respond-to(tablet-landscape) {
+      height: 32px;
+    }
+
     input,
     button {
       text-decoration: none;
-      padding: 0.5rem 3.4rem; // Adjusted padding for uniformity
+      padding: 8px 56px;
       font-size: 18px;
       cursor: pointer;
       border: 2px black;
@@ -722,16 +998,27 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
       border-radius: 40px;
       transition: transform 0.1s ease, box-shadow 0.1s ease;
       font-family: Arial, sans-serif; // Use consistent font
+
+      // Breakpoint: Small desktop
+      @include respond-to(desktop-small) {
+        padding: 6px 56px;
+      }
+
+      // Breakpoint: Tablet landscape
+      @include respond-to(tablet-landscape) {
+        font-size: 14px;
+        padding: 4px 56px;
+      }
     }
 
     // Individual styling for the input
     input {
       background-color: transparent;
       border: 2px $colour__grey__900;
-      color: $colour__grey__black; // Input text color
-      border-top-right-radius: 0; // Aligns with the button
+      color: $colour__grey__black;
+      border-top-right-radius: 0;
       border-bottom-right-radius: 0;
-      flex-grow: 1; // Allows input to grow and fill available space
+      flex-grow: 1;
     }
 
     // CTA button, using variables from CTA
@@ -747,9 +1034,14 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
         box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
       }
 
-      // Adjustments for desktop-small
+      // Breakpoint: Small desktop
       @include respond-to(desktop-small) {
         font-size: 18px;
+        padding: 8px 32px 10px 32px;
+      }
+      // Breakpoint: Tablet landscape
+      @include respond-to(tablet-landscape) {
+        font-size: 16px;
         padding: 8px 32px 10px 32px;
       }
 
@@ -762,33 +1054,33 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
 
   &__bottom-navbar {
     .nav-container {
-        display: flex;            // Makes nav-container a flex container
-        align-items: center;      // Vertically centers the content
-        justify-content: center;  // Horizontally centers the content if needed
-        height: 100%;             // Ensure it takes up the necessary height, adjust as needed
+      display: flex; // Makes nav-container a flex container
+      align-items: center; // Vertically centers the content
+      justify-content: center; // Horizontally centers the content if needed
+      height: 100%; // Ensure it takes up the necessary height, adjust as needed
 
-        .nav-links {
-            display: flex;        // Ensures nav-links uses Flexbox
-            align-items: center;  // Centers the links vertically within nav-links
-            justify-content: start; // Aligns items to the start horizontally
+      .nav-links {
+        display: flex; // Ensures nav-links uses Flexbox
+        align-items: center; // Centers the links vertically within nav-links
+        justify-content: start; // Aligns items to the start horizontally
 
-            a {
-                text-decoration: none;
-                color: $colour_text_secondary;   // Assuming variable is defined elsewhere
-                font-size: 16px;
-                margin-right: 20px;  // Adjust spacing between links
-                &:last-child {
-                    margin-right: 0;
-                }
+        a {
+          text-decoration: none;
+          color: $colour_text_secondary; // Assuming variable is defined elsewhere
+          font-size: 16px;
+          margin-right: 20px; // Adjust spacing between links
+          &:last-child {
+            margin-right: 0;
+          }
 
-                &:hover {
-                    color: $colour_text_primary;  // Assuming variable is defined elsewhere
-                    font-weight: bold;
-                }
-            }
+          &:hover {
+            color: $colour_text_primary; // Assuming variable is defined elsewhere
+            font-weight: bold;
+          }
         }
+      }
     }
-}
+  }
 
   &__bottom-navbar {
     position: relative;
@@ -806,6 +1098,11 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
       margin: 0 auto;
       height: 50px;
 
+      // Breakpoint: Tablet landscape
+      @include respond-to(tablet-landscape) {
+        height: 40px;
+      }
+
       .nav-links {
         display: flex;
         width: 33%;
@@ -814,6 +1111,15 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
           text-decoration: none;
           font-size: 16px;
           margin-right: 40%;
+          // Breakpoint: Small desktop
+          @include respond-to(desktop-small) {
+            font-size: 14px;
+          }
+
+          // Breakpoint: Tablet landscape
+          @include respond-to(tablet-landscape) {
+            font-size: 12px;
+          }
           &:last-child {
             margin-right: 0;
           }
@@ -849,12 +1155,19 @@ $unitHeight: 110vh / 8; // Every unit height represents 1/8th of the total heigh
         width: 2em;
         text-align: center;
       }
+
+      // Breakpoint: Small desktop
+      @include respond-to(desktop-small) {
+        top: 31%;
+        left: 34%;
+      }
+
+      // Breakpoint: Tablet landscape
+      @include respond-to(tablet-landscape) {
+        top: 31%;
+        left: 38%;
+        font-size: 13px;
+      }
     }
   }
-}
-
-//
-// 1440px
-//
-@media (max-width: $desktop-small) {
 }
