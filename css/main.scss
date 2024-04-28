@@ -9,7 +9,6 @@ $desktop-small: 1440px;
 $tablet-landscape: 1280px;
 
 // Define the 'respond-to' mixin
-
 @mixin respond-to($breakpoint) {
   @if $breakpoint == tablet-landscape {
     @media (max-width: $tablet-landscape) {
@@ -34,8 +33,6 @@ $tablet-landscape: 1280px;
   }
 }
 
-$font-stack: "Montserrat", sans-serif;
-
 * {
   margin: 0;
   padding: 0;
@@ -44,8 +41,7 @@ $font-stack: "Montserrat", sans-serif;
 body {
   margin: 0;
   padding: 0;
-  font-family: "Montserrat", sans-serif;
-  background-color: $colour_page_background;
+  font-family: $body-font-family;
 }
 
 //dfsnfksdz
@@ -70,7 +66,7 @@ body {
 
 .cta {
   background-color: $colour__grey__black;
-  color: #fff;
+  color: $colour__grey__white;
   text-decoration: none;
   padding: 0.5rem 6rem !important;
   border-radius: 40px;
@@ -91,10 +87,7 @@ body {
 
 .section {
   &__heading {
-    color: $colour_brand_secondary;
-    font-size: 2.6rem;
     margin-bottom: 120px;
-    color: $colour__grey__900; // Keeping text color black
 
     // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
@@ -186,6 +179,7 @@ body {
 
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
+      display: none;
       padding: 0 20px;
       height: 36px;
     }
@@ -206,7 +200,7 @@ body {
         color: $colour_text_secondary;
         font-weight: 500;
         text-decoration: none;
-        font-size: 16px;
+        font-size: 1rem;
         transition: color 0.1s ease-in-out, font-weight 0.1s ease-in-out;
 
         // Breakpoint: Tablet landscape
@@ -216,6 +210,93 @@ body {
         &:hover {
           color: $colour_text_primary;
           font-weight: 600;
+        }
+      }
+    }
+  }
+}
+
+// Hamburger Menu
+.hamburger-menu {
+  display: none; // Initially hidden for desktop
+
+  // Breakpoint: Tablet portrait
+  @include respond-to(tablet-landscape) {
+    display: block;
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 1000;
+
+    .hamburger-icon {
+      span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background-color: $colour_text_primary;
+        margin-bottom: 5px;
+      }
+    }
+  }
+}
+
+// Mobile Navigation
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(243, 243, 243, 0.3);
+  backdrop-filter: blur(2px);
+  z-index: 999;
+  overflow: hidden;
+  transition: top 0.3s ease-in-out;
+
+  // Breakpoint: Tablet portrait
+  @include respond-to(tablet-landscape) {
+    display: block;
+    position: fixed;
+
+    &.show {
+      top: 0;
+    }
+
+    .mobile-nav-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      height: 100%;
+      position: sticky;
+      top: 0;
+
+      .nav-logo {
+        font-size: 20px;
+        color: $colour_text_primary;
+        text-decoration: none;
+        margin-bottom: 40px; // Increased bottom margin
+      }
+
+      .mobile-nav-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        a {
+          color: $colour_text_secondary;
+          font-weight: 500;
+          text-decoration: none;
+          font-size: 3rem; // Increased font size
+          margin-bottom: 30px; // Increased bottom margin
+          transition: color 0.1s ease-in-out, font-weight 0.1s ease-in-out;
+
+          &:hover {
+            color: $colour_text_primary;
+            font-weight: 600;
+          }
         }
       }
     }
@@ -244,27 +325,20 @@ $unitHeight: calc(110vh / 8);
       padding: 5px 0;
     }
 
-    &--title {
-      font-size: 9.4rem;
-      font-family: "Montserrat", sans-serif;
+    &--name {
       font-weight: 300;
       transform: scaleY(1.5);
-      color: black;
       margin-top: 100px;
 
       // Breakpoint: Small desktop
       @include respond-to(desktop-small) {
         position: relative;
-        font-size: 7.8rem;
-        transform: scaleY(1.4);
         margin-top: 46px;
         margin-left: 13px;
       }
 
       // Breakpoint: Tablet landscape
       @include respond-to(tablet-landscape) {
-        font-size: 5.8rem;
-        transform: scaleY(1.5);
         margin-top: 94px;
         margin-left: 87px;
       }
@@ -602,9 +676,6 @@ $unitHeight: calc(110vh / 8);
   }
 
   &__heading {
-    color: $colour_brand_secondary;
-    font-size: 2.6rem;
-    color: $colour__grey__900;
     max-width: 1200px !important;
     margin-bottom: 100px;
 
@@ -621,20 +692,16 @@ $unitHeight: calc(110vh / 8);
   }
 
   &__title {
-    font-size: 3rem;
     margin-bottom: 40px;
-    color: $colour_brand_secondary;
     position: relative;
     left: 0;
 
     // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
-      font-size: 2.2rem;
       margin-bottom: 20px;
     }
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
-      font-size: 1.8rem;
     }
   }
 
@@ -694,7 +761,7 @@ $unitHeight: calc(110vh / 8);
     }
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
-      font-size: 16px;
+      font-size: 1rem;
     }
   }
 
@@ -705,7 +772,7 @@ $unitHeight: calc(110vh / 8);
     }
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
-      font-size: 16px;
+      font-size: 1rem;
       padding: 4px 52px 5px !important;
     }
   }
@@ -788,12 +855,8 @@ $unitHeight: calc(110vh / 8);
   }
 
   &__heading {
-    color: $colour_brand_secondary;
-    font-size: 2.6rem;
     margin-bottom: 150px;
-    color: black; // Keeping text color black
     max-width: 1200px !important;
-    color: $colour__grey__100;
 
     // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
@@ -823,14 +886,11 @@ $unitHeight: calc(110vh / 8);
     }
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
-      font-size: 16px;
       padding: 24px;
     }
   }
 
   &__box-title {
-    font-size: 1.4rem;
-    font-weight: 600;
     margin-bottom: 28px;
 
     // Breakpoint: Tablet landscape
@@ -969,7 +1029,7 @@ $unitHeight: calc(110vh / 8);
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
       font-weight: 400;
-      font-size: 16px;
+      font-size: 1rem;
       line-height: 1.4;
       margin-bottom: 46px;
     }
@@ -997,7 +1057,7 @@ $unitHeight: calc(110vh / 8);
       outline: none; // Removes the default focus outline
       border-radius: 40px;
       transition: transform 0.1s ease, box-shadow 0.1s ease;
-      font-family: Arial, sans-serif; // Use consistent font
+      font-family: $body-font-family;
 
       // Breakpoint: Small desktop
       @include respond-to(desktop-small) {
@@ -1041,7 +1101,7 @@ $unitHeight: calc(110vh / 8);
       }
       // Breakpoint: Tablet landscape
       @include respond-to(tablet-landscape) {
-        font-size: 16px;
+        font-size: 1rem;
         padding: 8px 32px 10px 32px;
       }
 
@@ -1067,7 +1127,7 @@ $unitHeight: calc(110vh / 8);
         a {
           text-decoration: none;
           color: $colour_text_secondary; // Assuming variable is defined elsewhere
-          font-size: 16px;
+          font-size: 1rem;
           margin-right: 20px; // Adjust spacing between links
           &:last-child {
             margin-right: 0;
@@ -1109,7 +1169,7 @@ $unitHeight: calc(110vh / 8);
         a {
           color: $colour_text_secondary;
           text-decoration: none;
-          font-size: 16px;
+          font-size: 1rem;
           margin-right: 40%;
           // Breakpoint: Small desktop
           @include respond-to(desktop-small) {
@@ -1144,7 +1204,7 @@ $unitHeight: calc(110vh / 8);
       transform: translate(-50%, -50%);
       z-index: 2;
       font-size: 1rem;
-      font-family: $font-stack;
+      font-family: $countdown-font-family;
       color: $colour_brand_primary;
       font-weight: 700;
       text-shadow: $colour_text_shadow;

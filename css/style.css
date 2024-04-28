@@ -1,12 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 h1 {
-  font-size: 2em;
-  font-family: "Helvetica", sans-serif;
+  font-size: 9.4em;
+  font-family: "Inter", "Helvetica", sans-serif;
+  color: rgb(75, 0, 128);
+}
+@media (max-width: 1440px) {
+  h1 {
+    font-size: 7.8rem;
+    transform: scaleY(1.4);
+  }
+}
+@media (max-width: 1280px) {
+  h1 {
+    font-size: 5.8rem;
+    transform: scaleY(1.5);
+  }
 }
 
 h2 {
-  font-size: 1.5em;
-  font-family: "Helvetica", sans-serif;
-  /* Other heading styles... */
+  font-size: 4rem;
+  font-family: "Inter", "Helvetica", sans-serif;
+  color: #191919;
 }
 @media (max-width: 1280px) {
   h2 {
@@ -15,13 +29,29 @@ h2 {
 }
 
 h3 {
-  font-size: 1.2em;
-  font-family: "Helvetica", sans-serif;
+  font-size: 3rem;
+  font-family: "Inter", "Helvetica", sans-serif;
+  color: rgb(75, 0, 128);
+}
+@media (max-width: 1440px) {
+  h3 {
+    font-size: 2.2rem;
+  }
+}
+@media (max-width: 1280px) {
+  h3 {
+    font-size: 1.8rem;
+  }
+}
+
+h4 {
+  font-size: 1.4rem;
+  font-weight: 600;
 }
 
 p {
   font-size: 1em;
-  font-family: "Helvetica", sans-serif;
+  font-family: "Inter", "Helvetica", sans-serif;
 }
 
 * {
@@ -32,8 +62,7 @@ p {
 body {
   margin: 0;
   padding: 0;
-  font-family: "Montserrat", sans-serif;
-  background-color: #f8f8f8;
+  font-family: "Inter", "Helvetica", sans-serif;
 }
 
 /* Webkit Scrollbar custom styles */
@@ -57,7 +86,7 @@ body {
 
 .cta {
   background-color: #000000;
-  color: #fff;
+  color: #fafafa;
   text-decoration: none;
   padding: 0.5rem 6rem !important;
   border-radius: 40px;
@@ -75,10 +104,7 @@ body {
 }
 
 .section__heading {
-  color: rgb(75, 0, 128);
-  font-size: 2.6rem;
   margin-bottom: 120px;
-  color: #191919;
 }
 @media (max-width: 1280px) {
   .section__heading {
@@ -160,6 +186,7 @@ body {
 }
 @media (max-width: 1280px) {
   .top-navbar .nav-container {
+    display: none;
     padding: 0 20px;
     height: 36px;
   }
@@ -179,7 +206,7 @@ body {
   color: #191919;
   font-weight: 500;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 1rem;
   transition: color 0.1s ease-in-out, font-weight 0.1s ease-in-out;
 }
 @media (max-width: 1280px) {
@@ -190,6 +217,82 @@ body {
 .top-navbar .nav-container .nav-links a:hover {
   color: #000000;
   font-weight: 600;
+}
+
+.hamburger-menu {
+  display: none;
+}
+@media (max-width: 1280px) {
+  .hamburger-menu {
+    display: block;
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 1000;
+  }
+  .hamburger-menu .hamburger-icon span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: #000000;
+    margin-bottom: 5px;
+  }
+}
+
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(243, 243, 243, 0.3);
+  backdrop-filter: blur(2px);
+  z-index: 999;
+  overflow: hidden;
+  transition: top 0.3s ease-in-out;
+}
+@media (max-width: 1280px) {
+  .mobile-nav {
+    display: block;
+    position: fixed;
+  }
+  .mobile-nav.show {
+    top: 0;
+  }
+  .mobile-nav .mobile-nav-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    height: 100%;
+    position: sticky;
+    top: 0;
+  }
+  .mobile-nav .mobile-nav-container .nav-logo {
+    font-size: 20px;
+    color: #000000;
+    text-decoration: none;
+    margin-bottom: 40px;
+  }
+  .mobile-nav .mobile-nav-container .mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .mobile-nav .mobile-nav-container .mobile-nav-links a {
+    color: #191919;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 3rem;
+    margin-bottom: 30px;
+    transition: color 0.1s ease-in-out, font-weight 0.1s ease-in-out;
+  }
+  .mobile-nav .mobile-nav-container .mobile-nav-links a:hover {
+    color: #000000;
+    font-weight: 600;
+  }
 }
 
 .banner__heading {
@@ -206,27 +309,20 @@ body {
     padding: 5px 0;
   }
 }
-.banner__heading--title {
-  font-size: 9.4rem;
-  font-family: "Montserrat", sans-serif;
+.banner__heading--name {
   font-weight: 300;
   transform: scaleY(1.5);
-  color: black;
   margin-top: 100px;
 }
 @media (max-width: 1440px) {
-  .banner__heading--title {
+  .banner__heading--name {
     position: relative;
-    font-size: 7.8rem;
-    transform: scaleY(1.4);
     margin-top: 46px;
     margin-left: 13px;
   }
 }
 @media (max-width: 1280px) {
-  .banner__heading--title {
-    font-size: 5.8rem;
-    transform: scaleY(1.5);
+  .banner__heading--name {
     margin-top: 94px;
     margin-left: 87px;
   }
@@ -546,9 +642,6 @@ body {
   }
 }
 .intro__heading {
-  color: rgb(75, 0, 128);
-  font-size: 2.6rem;
-  color: #191919;
   max-width: 1200px !important;
   margin-bottom: 100px;
 }
@@ -565,21 +658,13 @@ body {
   }
 }
 .intro__title {
-  font-size: 3rem;
   margin-bottom: 40px;
-  color: rgb(75, 0, 128);
   position: relative;
   left: 0;
 }
 @media (max-width: 1440px) {
   .intro__title {
-    font-size: 2.2rem;
     margin-bottom: 20px;
-  }
-}
-@media (max-width: 1280px) {
-  .intro__title {
-    font-size: 1.8rem;
   }
 }
 .intro__image, .intro__text {
@@ -636,7 +721,7 @@ body {
 }
 @media (max-width: 1280px) {
   .intro__description {
-    font-size: 16px;
+    font-size: 1rem;
   }
 }
 @media (max-width: 1440px) {
@@ -646,7 +731,7 @@ body {
 }
 @media (max-width: 1280px) {
   .intro__cta {
-    font-size: 16px;
+    font-size: 1rem;
     padding: 4px 52px 5px !important;
   }
 }
@@ -724,12 +809,8 @@ body {
   }
 }
 .key-features__heading {
-  color: rgb(75, 0, 128);
-  font-size: 2.6rem;
   margin-bottom: 150px;
-  color: black;
   max-width: 1200px !important;
-  color: #ededed;
 }
 @media (max-width: 1440px) {
   .key-features__heading {
@@ -760,13 +841,10 @@ body {
 }
 @media (max-width: 1280px) {
   .key-features__box {
-    font-size: 16px;
     padding: 24px;
   }
 }
 .key-features__box-title {
-  font-size: 1.4rem;
-  font-weight: 600;
   margin-bottom: 28px;
 }
 @media (max-width: 1280px) {
@@ -895,7 +973,7 @@ body {
 @media (max-width: 1280px) {
   .sign-up__description {
     font-weight: 400;
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 1.4;
     margin-bottom: 46px;
   }
@@ -922,7 +1000,7 @@ body {
   outline: none;
   border-radius: 40px;
   transition: transform 0.1s ease, box-shadow 0.1s ease;
-  font-family: Arial, sans-serif;
+  font-family: "Inter", "Helvetica", sans-serif;
 }
 @media (max-width: 1440px) {
   .sign-up__form input,
@@ -964,7 +1042,7 @@ body {
 }
 @media (max-width: 1280px) {
   .sign-up__form button {
-    font-size: 16px;
+    font-size: 1rem;
     padding: 8px 32px 10px 32px;
   }
 }
@@ -985,7 +1063,7 @@ body {
 .sign-up__bottom-navbar .nav-container .nav-links a {
   text-decoration: none;
   color: #191919;
-  font-size: 16px;
+  font-size: 1rem;
   margin-right: 20px;
 }
 .sign-up__bottom-navbar .nav-container .nav-links a:last-child {
@@ -1023,7 +1101,7 @@ body {
 .sign-up__bottom-navbar .nav-container .nav-links a {
   color: #191919;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 1rem;
   margin-right: 40%;
 }
 @media (max-width: 1440px) {
@@ -1052,7 +1130,7 @@ body {
   transform: translate(-50%, -50%);
   z-index: 2;
   font-size: 1rem;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Inter", "Helvetica", sans-serif;
   color: #f75200;
   font-weight: 700;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
