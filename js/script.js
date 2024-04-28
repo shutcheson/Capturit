@@ -154,11 +154,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-//Nav menu hamburger
 const hamburgerMenu = document.querySelector(".hamburger-menu");
 const mobileNav = document.querySelector(".mobile-nav");
-const mobileNavLinks = document.querySelectorAll(".mobile-nav-links a");
-const navLogo = document.querySelector(".nav-logo");
+const mobileNavLinks = document.querySelectorAll(
+  ".mobile-nav-links a, .nav-logo"
+);
 
 hamburgerMenu.addEventListener("click", () => {
   mobileNav.classList.toggle("show");
@@ -170,10 +170,4 @@ mobileNavLinks.forEach((link) => {
       mobileNav.classList.remove("show");
     }
   });
-});
-
-navLogo.addEventListener("click", () => {
-  if (mobileNav.classList.contains("show")) {
-    mobileNav.classList.remove("show");
-  }
 });
