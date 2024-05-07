@@ -154,6 +154,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+//
+// Hamburger nav
+//
 const hamburgerMenu = document.querySelector(".hamburger-menu");
 const mobileNav = document.querySelector(".mobile-nav");
 const mobileNavLinks = document.querySelectorAll(

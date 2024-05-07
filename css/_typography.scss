@@ -7,11 +7,15 @@ $desktop-large: 2560px;
 $desktop-medium: 1920px;
 $desktop-small: 1440px;
 $tablet-landscape: 1280px;
+$mobile-portrait-large: 1080px;
 
 // Define the 'respond-to' mixin
-
 @mixin respond-to($breakpoint) {
-  @if $breakpoint == tablet-landscape {
+  @if $breakpoint == mobile-portrait-large {
+    @media (max-width: $mobile-portrait-large) {
+      @content;
+    }
+  } @else if $breakpoint == tablet-landscape {
     @media (max-width: $tablet-landscape) {
       @content;
     }
@@ -64,9 +68,21 @@ h2 {
   font-family: $heading-font-family;
   color: $colour__grey__900;
 
+  // Breakpoint: Small desktop
+  @include respond-to(desktop-small) {
+    font-size: 2.6rem;
+  }
   // Breakpoint: Tablet landscape
   @include respond-to(tablet-landscape) {
-    font-size: 2.6rem;
+    font-size: 2.6em;
+  }
+  // Breakpoint: Mobile large portrait
+  @include respond-to(mobile-portrait-large) {
+    font-size: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -84,6 +100,13 @@ h3 {
   @include respond-to(tablet-landscape) {
     font-size: 1.8rem;
   }
+  // Breakpoint: Mobile large portrait
+  @include respond-to(mobile-portrait-large) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 h4 {
@@ -99,3 +122,15 @@ p {
 }
 
 // Other typography styles...
+
+.emphasise--primary {
+  color: $colour_brand_primary;
+  font-weight: 700;
+  letter-spacing: 100;
+}
+
+.emphasise--secondary {
+  color: $colour_brand_secondary;
+  font-weight: 700;
+  letter-spacing: 100;
+}
