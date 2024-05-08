@@ -38,6 +38,10 @@ $mobile-portrait-large: 1080px;
   }
 }
 
+html {
+  font-size: 10px;
+}
+
 // Define variables for typography
 $base-font-size: 10px;
 $heading-font-family: "Inter", "Helvetica", sans-serif;
@@ -46,7 +50,7 @@ $countdown-font-family: "Inter", "Helvetica", sans-serif;
 
 // Define styles for headings
 h1 {
-  font-size: 9.4em;
+  font-size: 15rem;
   font-family: $heading-font-family;
   color: $colour_brand_secondary;
 
@@ -58,13 +62,13 @@ h1 {
 
   // Breakpoint: Tablet landscape
   @include respond-to(tablet-landscape) {
-    font-size: 5.8rem;
+    font-size: 12.5rem;
     transform: scaleY(1.5);
   }
 }
 
 h2 {
-  font-size: 4rem;
+  font-size: 6.4rem;
   font-family: $heading-font-family;
   color: $colour__grey__900;
 
@@ -74,15 +78,16 @@ h2 {
   }
   // Breakpoint: Tablet landscape
   @include respond-to(tablet-landscape) {
-    font-size: 2.6em;
+    font-size: 2.4em;
   }
   // Breakpoint: Mobile large portrait
   @include respond-to(mobile-portrait-large) {
-    font-size: 1.8rem;
+    font-size: 2.8rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 4rem;
   }
 }
 
@@ -102,6 +107,7 @@ h3 {
   }
   // Breakpoint: Mobile large portrait
   @include respond-to(mobile-portrait-large) {
+    font-size: 2.4rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -110,18 +116,17 @@ h3 {
 }
 
 h4 {
-  font-size: 1.4rem;
+  font-size: 2.2rem;
   font-weight: 600;
 }
 
-// Define styles for paragraphs
+
 p {
-  font-size: 1em; // Example size, you can use variables here
+  font-size: 1.6rem; 
   font-family: $body-font-family;
-  // Other paragraph styles...
+
 }
 
-// Other typography styles...
 
 .emphasise--primary {
   color: $colour_brand_primary;

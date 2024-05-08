@@ -52,19 +52,18 @@ body {
 //dfsnfksdz
 /* Webkit Scrollbar custom styles */
 ::-webkit-scrollbar {
-  width: 12px; /* Adjust the width of the scrollbar */
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: transparent; /* No background color for the scrollbar track */
+  background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: $colour__grey__400; /* Thumb color */
-  border-radius: 30px; /* Rounded corners for the thumb */
+  background-color: $colour__grey__400;
+  border-radius: 30px;
 }
 
-/* Optional: Style for scrollbar thumb on hover */
 ::-webkit-scrollbar-thumb:hover {
   background-color: darken($colour__grey__400, 10%);
 }
@@ -75,7 +74,7 @@ body {
   text-decoration: none;
   padding: 0.5rem 6rem !important;
   border-radius: 40px;
-  font-size: 1.2rem;
+  font-size: 2rem;
   cursor: pointer;
   transition: transform 0.1s ease, box-shadow 0.1s ease;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
@@ -92,8 +91,6 @@ body {
 
 .section {
   &__heading {
-    // margin-bottom: 120px;
-
     // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
       // margin-bottom: 50px !important;
@@ -145,8 +142,8 @@ body {
     stroke-width: 1.2px;
     stroke-linecap: round;
     stroke-linejoin: round;
-    box-shadow: 0 2px 4px $colour__grey__500; /* Shadow on the arrow */
-    animation: bounce 1.4s infinite ease-in-out; /* Adjusted animation duration */
+    box-shadow: 0 2px 4px $colour__grey__500;
+    animation: bounce 1.4s infinite ease-in-out;
     width: 100%;
     height: 80%;
   }
@@ -191,13 +188,17 @@ body {
 
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
+      height: 34px;
+    }
+    // Breakpoint: Tablet landscape
+    @include respond-to(mobile-portrait-large) {
       display: none;
       padding: 0 20px;
       height: 36px;
     }
 
     .nav-logo {
-      font-size: 16px;
+      font-size: 1.6rem;
       color: $colour_text_primary;
       text-decoration: none;
     }
@@ -212,12 +213,16 @@ body {
         color: $colour_text_secondary;
         font-weight: 500;
         text-decoration: none;
-        font-size: 1rem;
+        font-size: 1.6rem;
         transition: color 0.1s ease-in-out, font-weight 0.1s ease-in-out;
 
         // Breakpoint: Tablet landscape
         @include respond-to(tablet-landscape) {
-          font-size: 13px;
+          font-size: 1.3px;
+        }
+        // Breakpoint: Tablet landscape
+        @include respond-to(mobile-portrait-large) {
+          font-size: 1.3px;
         }
 
         &:hover {
@@ -231,10 +236,10 @@ body {
 
 // Hamburger Menu
 .hamburger-menu {
-  display: none; // Initially hidden for desktop
+  display: none;
 
   // Breakpoint: Tablet portrait
-  @include respond-to(tablet-landscape) {
+  @include respond-to(mobile-portrait-large) {
     display: block;
     position: fixed;
     top: 16px;
@@ -291,10 +296,10 @@ body {
       top: 0;
 
       .nav-logo {
-        font-size: 20px;
+        font-size: 2rem;
         color: $colour_text_primary;
         text-decoration: none;
-        margin-bottom: 40px; // Increased bottom margin
+        margin-bottom: 40px;
       }
 
       .mobile-nav-links {
@@ -307,7 +312,7 @@ body {
           font-weight: 500;
           text-decoration: none;
           font-size: 2rem;
-          margin-bottom: 30px; // Increased bottom margin
+          margin-bottom: 30px;
           transition: color 0.1s ease-in-out, font-weight 0.1s ease-in-out;
 
           &:hover {
@@ -361,7 +366,7 @@ $unitHeight: calc(100vh / 8);
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
       height: 100vh;
-      max-height: 740px;
+      max-height: 800px;
     }
 
     // Breakpoint: Tablet landscape
@@ -455,7 +460,7 @@ $unitHeight: calc(100vh / 8);
   }
 
   &__tagline {
-    font-size: 2.6rem;
+    font-size: 4.2rem;
     font-weight: 600;
     display: flex;
     justify-content: left;
@@ -498,7 +503,7 @@ $unitHeight: calc(100vh / 8);
 
       // Breakpoint: Mobile large portrait
       @include respond-to(mobile-portrait-large) {
-        width: 100%; // Each box takes half the width
+        width: 100%;
         display: flex;
         flex-wrap: nowrap;
         flex-direction: column;
@@ -545,22 +550,20 @@ $unitHeight: calc(100vh / 8);
     text-decoration: none;
     padding: 6px 70px 6px !important;
     border-radius: 40px;
-    font-size: 1.2rem;
+    font-size: 2rem;
     cursor: pointer;
     transition: transform 0.1s ease, box-shadow 0.1s ease;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
 
     &:active {
-      // Combines scaling down and slight downward movement
       transform: scale(0.95) translateY(3px);
-      // Lighten shadow to simulate the button being pressed down
       box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
     }
 
     // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
       padding: 5px 53px 6px !important;
-      font-size: 1rem;
+      font-size: 1.6rem;
     }
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
@@ -578,8 +581,13 @@ $unitHeight: calc(100vh / 8);
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  height: 59%;
+  height: 74%;
   width: 100%;
+
+  // Breakpoint: Extra large desktop
+  @include respond-to(desktop-x-large) {
+    margin-top: 60px;
+  }
 
   // Breakpoint: Small desktop
   @include respond-to(desktop-small) {
@@ -635,7 +643,7 @@ $unitHeight: calc(100vh / 8);
     &--third {
       position: relative;
       max-width: 100%;
-      font-size: 5rem;
+      font-size: 8rem;
       color: $colour_brand_primary;
       font-weight: 700;
       text-shadow: $colour_text_shadow;
@@ -643,18 +651,18 @@ $unitHeight: calc(100vh / 8);
 
       // Breakpoint: Small desktop
       @include respond-to(desktop-small) {
-        font-size: 3.8rem;
+        font-size: 6rem;
       }
       // Breakpoint: Tablet landscape
       @include respond-to(tablet-landscape) {
         margin-top: -26px;
-        font-size: 3rem;
+        font-size: 4.8rem;
       }
 
       // Breakpoint: Mobile large portrait
       @include respond-to(mobile-portrait-large) {
         margin-top: -24px;
-        font-size: 1.8rem;
+        font-size: 2.9rem;
       }
 
       &_time-unit {
@@ -809,8 +817,9 @@ $unitHeight: calc(100vh / 8);
     }
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
+      padding-top: 40px;
       height: 100vh;
-      max-height: 900px;
+      max-height: 1100px;
     }
     // Breakpoint: Mobile large portrait
     @include respond-to(mobile-portrait-large) {
@@ -870,7 +879,7 @@ $unitHeight: calc(100vh / 8);
     }
     // Breakpoint: Mobile large portrait
     @include respond-to(mobile-portrait-large) {
-      width: 94%;
+      width: 90%;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -885,14 +894,12 @@ $unitHeight: calc(100vh / 8);
 
     // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
-      // font-size: 2.1rem;
       margin-bottom: 70px;
     }
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
-      // font-size: 1.6rem;
       height: 100px;
-      margin-bottom: 32px;
+      margin-bottom: 10px;
     }
   }
 
@@ -914,11 +921,6 @@ $unitHeight: calc(100vh / 8);
     }
   }
 
-  &__image,
-  &__text {
-    position: relative;
-  }
-
   &__image {
     flex: 1;
     max-width: 33.333%;
@@ -928,7 +930,7 @@ $unitHeight: calc(100vh / 8);
     // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
       padding-right: 24px;
-      max-width: 82%;
+      // max-width: 82%;
       margin-bottom: 23px;
     }
     // Breakpoint: Mobile large portrait
@@ -939,6 +941,7 @@ $unitHeight: calc(100vh / 8);
       align-items: center;
       padding-right: 0;
       margin-bottom: 10px;
+      max-width: 100%;
     }
 
     img {
@@ -950,11 +953,11 @@ $unitHeight: calc(100vh / 8);
       }
       // Breakpoint: Tablet landscape
       @include respond-to(tablet-landscape) {
-        max-width: 88%;
+        max-width: 76%;
       }
       // Breakpoint: Mobile large portrait
       @include respond-to(mobile-portrait-large) {
-        max-width: 95%;
+        max-width: 74%;
         margin-left: -28px;
       }
     }
@@ -972,11 +975,12 @@ $unitHeight: calc(100vh / 8);
     // Breakpoint: Mobile large portrait
     @include respond-to(mobile-portrait-large) {
       max-width: 100%;
+      display: contents;
     }
   }
 
   &__description {
-    font-size: 20px;
+    font-size: 2rem;
     color: $colour_text_secondary;
     margin-bottom: 40px;
     line-height: 1.5;
@@ -984,11 +988,11 @@ $unitHeight: calc(100vh / 8);
 
     // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
-      font-size: 18px;
+      font-size: 1.8rem;
     }
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
-      font-size: 1rem;
+      font-size: 1.6rem;
     }
   }
 
@@ -998,24 +1002,22 @@ $unitHeight: calc(100vh / 8);
     text-decoration: none;
     padding: 6px 70px 6px !important;
     border-radius: 40px;
-    font-size: 1.2rem;
+    font-size: 2rem;
     cursor: pointer;
     transition: transform 0.1s ease, box-shadow 0.1s ease;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
 
     &:active {
-      // Combines scaling down and slight downward movement
       transform: scale(0.95) translateY(3px);
-      // Lighten shadow to simulate the button being pressed down
       box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
     }
     // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
-      font-size: 20px;
+      font-size: 2rem;
     }
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
-      font-size: 1rem;
+      font-size: 1.6rem;
       padding: 4px 52px 5px !important;
     }
     // Breakpoint: Mobile large portrait
@@ -1023,7 +1025,7 @@ $unitHeight: calc(100vh / 8);
       align-items: center;
       display: flex;
       justify-content: center;
-      padding: 5px 38px 6px;
+      padding: 8px 38px 6px;
       width: 130px;
     }
   }
@@ -1035,12 +1037,12 @@ $unitHeight: calc(100vh / 8);
 
 // Key features Section Styles
 .key-features {
-  padding: 0;
+  padding-top: 0;
 
   overflow: visible;
 
   &__section {
-    height: 160vh;
+    height: 173vh;
     position: relative;
     overflow: visible;
     z-index: 888;
@@ -1066,13 +1068,15 @@ $unitHeight: calc(100vh / 8);
     @include respond-to(tablet-landscape) {
       height: 146vh;
       max-height: 1000px;
+      padding-top: 80px;
     }
     // Breakpoint: Mobile large portrait
     @include respond-to(mobile-portrait-large) {
       height: auto;
       max-height: none;
       background-repeat: repeat;
-      padding-bottom: 188px;
+      padding-bottom: 4.4rem;
+      padding-top: 0px;
     }
   }
 
@@ -1106,7 +1110,7 @@ $unitHeight: calc(100vh / 8);
     }
     // Breakpoint: Mobile large portrait
     @include respond-to(mobile-portrait-large) {
-      margin-top: 70px;
+      margin-top: 3rem;
     }
   }
 
@@ -1135,18 +1139,16 @@ $unitHeight: calc(100vh / 8);
 
     // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
-      font-size: 2.1rem;
       margin-bottom: 90px;
     }
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
-      font-size: 1.5rem;
       height: 100px;
       margin-bottom: 32px;
     }
     // Breakpoint: Mobile large portrait
     @include respond-to(mobile-portrait-large) {
-      margin-bottom: 30px;
+      margin-bottom: 3rem;
       text-align: center;
     }
   }
@@ -1167,7 +1169,7 @@ $unitHeight: calc(100vh / 8);
     }
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
-      padding: 24px 24px 34px 24px;
+      padding: 24px;
     }
   }
 
@@ -1176,19 +1178,19 @@ $unitHeight: calc(100vh / 8);
 
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
-      font-size: 1.2rem;
+      font-size: 1.9rem;
     }
   }
 
   &__box-description {
-    font-size: 1rem;
+    font-size: 1.6rem;
     color: $colour_text_secondary;
     line-height: 1.4;
     font-weight: 500;
 
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
-      font-size: 1rem;
+      font-size: 1.6rem;
       line-height: 1.3;
     }
     // Breakpoint: Mobile large portrait
@@ -1227,7 +1229,7 @@ $unitHeight: calc(100vh / 8);
     height: 100%;
     width: 80%;
     max-width: 1200px;
-    margin: 0 auto; // Centering the container.
+    margin: 0 auto;
     padding-top: 50px;
     display: flex;
     flex-direction: column;
@@ -1246,6 +1248,7 @@ $unitHeight: calc(100vh / 8);
     // Breakpoint: Mobile large portrait
     @include respond-to(mobile-portrait-large) {
       height: auto;
+      width: 100%;
     }
   }
 
@@ -1273,7 +1276,7 @@ $unitHeight: calc(100vh / 8);
     }
     // Breakpoint: Mobile large portrait
     @include respond-to(mobile-portrait-large) {
-      width: 100%;
+      width: 90%;
       display: flex;
       flex-direction: column-reverse;
       justify-content: center;
@@ -1306,7 +1309,7 @@ $unitHeight: calc(100vh / 8);
   }
   &__image,
   &__text {
-    position: relative; // Allows for direct manipulation of position if finer adjustments are needed.
+    position: relative;
   }
 
   &__image {
@@ -1321,7 +1324,7 @@ $unitHeight: calc(100vh / 8);
       // Breakpoint: Mobile large portrait
       @include respond-to(mobile-portrait-large) {
         max-width: 100%;
-        margin-left: -32px;
+        // margin-left: -32px;
       }
     }
 
@@ -1336,7 +1339,7 @@ $unitHeight: calc(100vh / 8);
       }
       // Breakpoint: Mobile large portrait
       @include respond-to(mobile-portrait-large) {
-        max-width: 100%;
+        max-width: 90%;
       }
     }
   }
@@ -1362,7 +1365,7 @@ $unitHeight: calc(100vh / 8);
   }
 
   &__description {
-    font-size: 20px;
+    font-size: 2rem;
     color: $colour_text_secondary;
     margin-bottom: 40px;
     line-height: 1.5;
@@ -1373,7 +1376,7 @@ $unitHeight: calc(100vh / 8);
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
       font-weight: 400;
-      font-size: 1rem;
+      font-size: 1.6rem;
       line-height: 1.4;
       margin-bottom: 46px;
     }
@@ -1400,24 +1403,29 @@ $unitHeight: calc(100vh / 8);
     button {
       text-decoration: none;
       padding: 8px 56px;
-      font-size: 18px;
+      font-size: 1.8rem;
       cursor: pointer;
       border: 2px black;
-      outline: none; // Removes the default focus outline
+      outline: none;
       border-radius: 40px;
       transition: transform 0.1s ease, box-shadow 0.1s ease;
       font-family: $body-font-family;
 
       // Breakpoint: Small desktop
       @include respond-to(desktop-small) {
-        font-size: 14px;
+        font-size: 1.4rem;
         padding: 6px 56px;
       }
 
       // Breakpoint: Tablet landscape
       @include respond-to(tablet-landscape) {
-        font-size: 14px;
+        font-size: 1.4rem;
         padding: 0px 32px 0px;
+      }
+      // Breakpoint: Mobile large portrait
+      @include respond-to(mobile-portrait-large) {
+        font-size: 1.2rem;
+        padding: 0px 20px;
       }
     }
 
@@ -1445,7 +1453,7 @@ $unitHeight: calc(100vh / 8);
       text-shadow: $colour_text_shadow;
 
       &:active {
-        transform: scale(0.95) translateY(6px);
+        // transform: scale(0.95) translateY(6px);
         box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
       }
 
@@ -1455,12 +1463,12 @@ $unitHeight: calc(100vh / 8);
       }
       // Breakpoint: Tablet landscape
       @include respond-to(tablet-landscape) {
-        font-size: 1rem;
+        font-size: 1.2rem;
         padding: 0px 32px 0px;
       }
       // Breakpoint: Mobile large portrait
       @include respond-to(mobile-portrait-large) {
-        font-size: 0.8rem;
+        font-size: 1.2rem;
         width: 28%;
         padding: 0px 17px 0px;
       }
@@ -1500,16 +1508,15 @@ $unitHeight: calc(100vh / 8);
         width: 33%;
 
         a {
-          font-size: 0.8rem;
           text-decoration: none;
           color: $colour_text_secondary;
-          font-size: 1rem;
+          font-size: 1.6rem;
           margin-right: 20px;
           margin-right: 40%;
 
           // Breakpoint: Small desktop
           @include respond-to(desktop-small) {
-            font-size: 14px;
+            font-size: 1.4rem;
           }
 
           &:last-child {
@@ -1531,7 +1538,7 @@ $unitHeight: calc(100vh / 8);
         a {
           // Breakpoint: Tablet landscape
           @include respond-to(tablet-landscape) {
-            font-size: 12px;
+            font-size: 1.2rem;
           }
 
           &:hover {
@@ -1553,7 +1560,7 @@ $unitHeight: calc(100vh / 8);
       max-width: 33.333%;
       transform: translate(-50%, -50%);
       z-index: 2;
-      font-size: 1rem;
+      font-size: 1.6rem;
       font-family: $countdown-font-family;
       color: $colour_brand_primary;
       font-weight: 700;
@@ -1576,13 +1583,13 @@ $unitHeight: calc(100vh / 8);
       @include respond-to(tablet-landscape) {
         top: 31%;
         left: 45%;
-        font-size: 12px;
+        font-size: 1.2rem;
       }
       // Breakpoint: Mobile large portrait
       @include respond-to(mobile-portrait-large) {
         top: 32%;
-        left: 44%;
-        font-size: 19px;
+        left: 39%;
+        font-size: 1.7rem;
         text-align: left;
       }
     }

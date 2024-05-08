@@ -36,9 +36,9 @@ $mobile-portrait-large: 1080px; // done
   }
 }
 
-// Breakpoint: Medium desktop
-@include respond-to(desktop-large) {
-  margin-top: 100px;
+// Breakpoint: Extra large desktop
+@include respond-to(desktop-x-large) {
+  
 }
 
 // Breakpoint: Medium desktop
@@ -57,11 +57,11 @@ $mobile-portrait-large: 1080px; // done
 
 // Breakpoint: Tablet landscape
 @include respond-to(tablet-landscape) {
-  width: 80%;
+  height: 30px;
 }
 
 // Breakpoint: Mobile large portrait
 @include respond-to(mobile-portrait-large) {
-  max-width: 95%;
-  margin-left: -28px;
+  font-size: 12px;
+  padding: 0px 2px;
 }
