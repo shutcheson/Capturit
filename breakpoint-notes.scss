@@ -43,11 +43,12 @@ $mobile-portrait-large: 1080px; // done
 
 // Breakpoint: Medium desktop
 @include respond-to(desktop-large) {
-  width: 84%;
+  font-size: 5rem;
 }
 
 // Breakpoint: Medium desktop
 @include respond-to(desktop-medium) {
+  font-size: 5rem;
 }
 
 // Breakpoint: Small desktop
