@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   }
 
   // Set the date for the countdown
-  const countDownDate = new Date("jun 20, 2024 17:00:00").getTime();
+  const countDownDate = new Date("jul 01, 2024 00:00:00").getTime();
 
   // Initialize the countdown timers using their respective container selectors
   startCountdown(".countdown__timer--first", countDownDate);
