@@ -178,7 +178,9 @@ mobileNavLinks.forEach((link) => {
 // image blurr on scroll
 const bannerSection = document.getElementById("banner-section");
 
-// Function for counterclockwise twist effect (anti-clockwise)
+/*
+// Counterclockwise twist effect function
+*/
 function applyCounterclockwiseBlurTwistEffect(
   container,
   image,
@@ -223,7 +225,9 @@ function applyCounterclockwiseBlurTwistEffect(
   });
 }
 
-// Function for clockwise twist effect
+/*
+Clockwise twist effect function
+*/
 function applyClockwiseBlurTwistEffect(container, image, blurMax, twistMax) {
   window.addEventListener("scroll", () => {
     const currentScrollPosition =
@@ -283,7 +287,10 @@ applyClockwiseBlurTwistEffect(
   25
 );
 
-// Function for blur and scale effect without twist
+/*
+No twist effect function
+*/
+
 function applyBlurScaleEffect(container, image, blurMax) {
   window.addEventListener("scroll", () => {
     const currentScrollPosition =
