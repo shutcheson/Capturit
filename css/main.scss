@@ -47,6 +47,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: $body-font-family;
+  background-color: $colour_page_background;
 }
 
 //dfsnfksdz
@@ -669,6 +670,9 @@ $unitHeight: calc(100vh / 8);
   z-index: -1;
   width: 23%;
   height: auto;
+
+  transition: filter 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  image-rendering: pixelated;
 
   // Breakpoint: Small desktop
   @include respond-to(desktop-small) {

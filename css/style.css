@@ -98,6 +98,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Inter", "Helvetica", sans-serif;
+  background-color: #f8f8f8;
 }
 
 /* Webkit Scrollbar custom styles */
@@ -120,7 +121,7 @@ body {
 
 .cta {
   background-color: #000000;
-  color: #fafafa;
+  color: #ffffff;
   text-decoration: none;
   padding: 0.5rem 6rem !important;
   border-radius: 40px;
@@ -554,7 +555,7 @@ body {
 }
 .banner__cta {
   background-color: #000000;
-  color: #fafafa;
+  color: #ffffff;
   text-decoration: none;
   padding: 6px 70px 6px !important;
   border-radius: 40px;
@@ -688,6 +689,8 @@ body {
   z-index: -1;
   width: 23%;
   height: auto;
+  transition: filter 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  image-rendering: pixelated;
 }
 @media (max-width: 1440px) {
   #portrait-wedding {
@@ -1006,7 +1009,7 @@ body {
 }
 .intro__cta {
   background-color: #000000;
-  color: #fafafa;
+  color: #ffffff;
   text-decoration: none;
   padding: 6px 70px 6px !important;
   border-radius: 40px;
@@ -1207,7 +1210,7 @@ body {
 }
 
 #key-features--heading h2 {
-  color: #fafafa !important;
+  color: #ffffff !important;
 }
 
 .sign-up__section {
@@ -1447,7 +1450,7 @@ body {
 }
 .sign-up__form button {
   background-color: #000000;
-  color: #ededed;
+  color: #f8f8f8;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);

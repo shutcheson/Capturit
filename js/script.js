@@ -1,18 +1,16 @@
 document.addEventListener("DOMContentLoaded", (event) => {
-  console.log("DOM Content fully loaded."); // Log when DOM is fully loaded
+  console.log("DOM Content fully loaded.");
 
   function startCountdown(containerSelector, countDownDate) {
-    console.log(`Starting countdown for ${containerSelector}.`); // Log which countdown is being started
+    console.log(`Starting countdown for ${containerSelector}.`);
 
     const getElements = (selector) =>
       document.querySelector(containerSelector + " " + selector);
 
-    // Update the countdown every second
     const timer = setInterval(function () {
       const now = new Date().getTime();
       const distance = countDownDate - now;
 
-      // Calculate days, hours, minutes, and seconds
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor(
         (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
@@ -20,39 +18,37 @@ document.addEventListener("DOMContentLoaded", (event) => {
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      // Select countdown elements within the specified container
       const daysEl = getElements(".days");
       const hoursEl = getElements(".hours");
       const minutesEl = getElements(".minutes");
       const secondsEl = getElements(".seconds");
 
-      // Update the countdown elements
-      daysEl.textContent = days.toString().padStart(2, "0");
-      hoursEl.textContent = hours.toString().padStart(2, "0");
-      minutesEl.textContent = minutes.toString().padStart(2, "0");
-      secondsEl.textContent = seconds.toString().padStart(2, "0");
+      if (daysEl && hoursEl && minutesEl && secondsEl) {
+        daysEl.textContent = days.toString().padStart(2, "0");
+        hoursEl.textContent = hours.toString().padStart(2, "0");
+        minutesEl.textContent = minutes.toString().padStart(2, "0");
+        secondsEl.textContent = seconds.toString().padStart(2, "0");
 
-      // Log each update
-      console.log(
-        `Update: ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`
-      );
+        console.log(
+          `Update: ${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`
+        );
 
-      // If the countdown is over, clear the timer and display zeros
-      if (distance < 0) {
-        clearInterval(timer);
-        daysEl.textContent = "00";
-        hoursEl.textContent = "00";
-        minutesEl.textContent = "00";
-        secondsEl.textContent = "00";
-        console.log("Countdown has ended.");
+        if (distance < 0) {
+          clearInterval(timer);
+          daysEl.textContent = "00";
+          hoursEl.textContent = "00";
+          minutesEl.textContent = "00";
+          secondsEl.textContent = "00";
+          console.log("Countdown has ended.");
+        }
+      } else {
+        console.log("One or more countdown elements not found.");
       }
     }, 1000);
   }
 
-  // Set the date for the countdown
   const countDownDate = new Date("jul 01, 2024 00:00:00").getTime();
 
-  // Initialize the countdown timers using their respective container selectors
   startCountdown(".countdown__timer--first", countDownDate);
   startCountdown(".countdown__timer--second", countDownDate);
   startCountdown(".countdown__timer--third", countDownDate);
@@ -123,10 +119,14 @@ function easeInOutCubic(t, b, c, d) {
 document.addEventListener("DOMContentLoaded", function () {
   const scrollDownButton = document.getElementById("scroll-down-arrow");
 
-  scrollDownButton.addEventListener("click", function () {
-    const aboutSection = document.getElementById("about-section");
-    smoothScrollTo(aboutSection, 1000); // Adjust the duration as needed (in milliseconds)
-  });
+  if (scrollDownButton) {
+    scrollDownButton.addEventListener("click", function () {
+      const aboutSection = document.getElementById("about-section");
+      smoothScrollTo(aboutSection, 1000); // Adjust the duration as needed (in milliseconds)
+    });
+  } else {
+    console.log("Element with ID 'scroll-down-arrow' not found.");
+  }
 
   function smoothScrollTo(target, duration) {
     const targetPosition = target.getBoundingClientRect().top;
@@ -174,3 +174,161 @@ mobileNavLinks.forEach((link) => {
     }
   });
 });
+
+// image blurr on scroll
+const bannerSection = document.getElementById("banner-section");
+
+// Function for counterclockwise twist effect (anti-clockwise)
+function applyCounterclockwiseBlurTwistEffect(
+  container,
+  image,
+  blurMax,
+  twistMax
+) {
+  window.addEventListener("scroll", () => {
+    const currentScrollPosition =
+      window.pageYOffset || document.documentElement.scrollTop;
+    const bannerTop = bannerSection.offsetTop;
+    const bannerHeight = bannerSection.offsetHeight;
+    const bannerBottom = bannerTop + bannerHeight;
+
+    if (
+      currentScrollPosition >= bannerTop &&
+      currentScrollPosition <= bannerBottom
+    ) {
+      const relativeScrollPosition = currentScrollPosition - bannerTop;
+      const blurValue = Math.min(
+        blurMax,
+        (relativeScrollPosition / bannerHeight) * blurMax
+      );
+      const opacityValue = Math.max(
+        0,
+        1 - relativeScrollPosition / bannerHeight
+      );
+      const scaleValue = 1 + relativeScrollPosition / bannerHeight;
+      const twistValue = -(relativeScrollPosition / bannerHeight) * twistMax;
+
+      image.style.filter = `blur(${blurValue}px)`;
+      image.style.opacity = opacityValue;
+      image.style.transform = `scale(${scaleValue}) rotate(${twistValue}deg)`;
+    } else if (currentScrollPosition < bannerTop) {
+      image.style.filter = "blur(0px)";
+      image.style.opacity = 1;
+      image.style.transform = "scale(1) rotate(0deg)";
+    } else if (currentScrollPosition > bannerBottom) {
+      image.style.filter = `blur(${blurMax}px)`;
+      image.style.opacity = 0;
+      image.style.transform = `scale(${2}) rotate(${-twistMax}deg)`;
+    }
+  });
+}
+
+// Function for clockwise twist effect
+function applyClockwiseBlurTwistEffect(container, image, blurMax, twistMax) {
+  window.addEventListener("scroll", () => {
+    const currentScrollPosition =
+      window.pageYOffset || document.documentElement.scrollTop;
+    const bannerTop = bannerSection.offsetTop;
+    const bannerHeight = bannerSection.offsetHeight;
+    const bannerBottom = bannerTop + bannerHeight;
+
+    if (
+      currentScrollPosition >= bannerTop &&
+      currentScrollPosition <= bannerBottom
+    ) {
+      const relativeScrollPosition = currentScrollPosition - bannerTop;
+      const blurValue = Math.min(
+        blurMax,
+        (relativeScrollPosition / bannerHeight) * blurMax
+      );
+      const opacityValue = Math.max(
+        0,
+        1 - relativeScrollPosition / bannerHeight
+      );
+      const scaleValue = 1 + relativeScrollPosition / bannerHeight;
+      const twistValue = (relativeScrollPosition / bannerHeight) * twistMax;
+
+      image.style.filter = `blur(${blurValue}px)`;
+      image.style.opacity = opacityValue;
+      image.style.transform = `scale(${scaleValue}) rotate(${twistValue}deg)`;
+    } else if (currentScrollPosition < bannerTop) {
+      image.style.filter = "blur(0px)";
+      image.style.opacity = 1;
+      image.style.transform = "scale(1) rotate(0deg)";
+    } else if (currentScrollPosition > bannerBottom) {
+      image.style.filter = `blur(${blurMax}px)`;
+      image.style.opacity = 0;
+      image.style.transform = `scale(${2}) rotate(${twistMax}deg)`;
+    }
+  });
+}
+
+// Applying counterclockwise effect to portrait-wedding
+const portraitWeddingContainer = document.getElementById("portrait-wedding");
+const portraitWeddingImage = portraitWeddingContainer.querySelector("img");
+applyCounterclockwiseBlurTwistEffect(
+  portraitWeddingContainer,
+  portraitWeddingImage,
+  50,
+  25
+);
+
+// Applying clockwise effect to landscape-trip
+const landscapeTripContainer = document.getElementById("landscape-trip");
+const landscapeTripImage = landscapeTripContainer.querySelector("img");
+applyClockwiseBlurTwistEffect(
+  landscapeTripContainer,
+  landscapeTripImage,
+  50,
+  25
+);
+
+// Function for blur and scale effect without twist
+function applyBlurScaleEffect(container, image, blurMax) {
+  window.addEventListener("scroll", () => {
+    const currentScrollPosition =
+      window.pageYOffset || document.documentElement.scrollTop;
+    const bannerTop = bannerSection.offsetTop;
+    const bannerHeight = bannerSection.offsetHeight;
+    const bannerBottom = bannerTop + bannerHeight;
+
+    if (
+      currentScrollPosition >= bannerTop &&
+      currentScrollPosition <= bannerBottom
+    ) {
+      const relativeScrollPosition = currentScrollPosition - bannerTop;
+      const blurValue = Math.min(
+        blurMax,
+        (relativeScrollPosition / bannerHeight) * blurMax
+      );
+      const opacityValue = Math.max(
+        0,
+        1 - relativeScrollPosition / bannerHeight
+      );
+      const scaleValue = 1 + relativeScrollPosition / bannerHeight;
+
+      image.style.filter = `blur(${blurValue}px)`;
+      image.style.opacity = opacityValue;
+      image.style.transform = `scale(${scaleValue})`;
+    } else if (currentScrollPosition < bannerTop) {
+      image.style.filter = "blur(0px)";
+      image.style.opacity = 1;
+      image.style.transform = "scale(1)";
+    } else if (currentScrollPosition > bannerBottom) {
+      image.style.filter = `blur(${blurMax}px)`;
+      image.style.opacity = 0;
+      image.style.transform = `scale(${2})`;
+    }
+  });
+}
+
+// Applying blur and scale effect to portrait-party
+const portraitPartyContainer = document.getElementById("portrait-party");
+const portraitPartyImage = portraitPartyContainer.querySelector("img");
+applyBlurScaleEffect(portraitPartyContainer, portraitPartyImage, 50);
+
+// Applying blur and scale effect to landscape-festival
+const landscapeFestivalContainer =
+  document.getElementById("landscape-festival");
+const landscapeFestivalImage = landscapeFestivalContainer.querySelector("img");
+applyBlurScaleEffect(landscapeFestivalContainer, landscapeFestivalImage, 50);
