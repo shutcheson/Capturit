@@ -1,0 +1,44 @@
+Capturit Help & Support URL Plan
+
+Capturit Help & Support URL Plan
+•	Overview of Help & Support (capturit.app/help/100)
+100's: Getting Started
+•	101 - Quick Start Guide (capturit.app/help/101)
+•	102 - FAQs
+•	103 - Contact Support
+200's: Account Management
+•	200 - Account Overview
+•	201 - Account Settings
+•	202 - Password Management
+•	203 - Data and Privacy Settings 
+•	204 - Deleting Account Data (capturit.app/help/204)
+300's: App Features and Usage
+•	300 - Using the Capturit App
+•	301 - Feature Overview
+•	302 - Media Uploads
+•	303 - Content Sharing
+•	304 - Managing Events
+500's: Privacy and Security
+•	500 - Privacy and Security Overview
+•	501 - Privacy Policy
+•	502 - Data Retention Policy
+•	503 - Security Measures
+•	504 - User Data Protection
+600's: Legal and Compliance
+•	600 - Legal Overview
+•	601 - Terms of Service
+•	602 - User Agreement
+•	603 - Compliance Information
+700's: Developers
+•	700 - Developer Overview
+•	701 - API Documentation
+•	702 - Integration Guidelines
+800's: Business and Advertising
+•	800 - Business Solutions Overview
+•	801 - Advertising Policies
+•	802 - Setting Up Business Accounts
+900's: Accessibility
+•	900 - Accessibility Overview
+•	901 - Accessibility Features
+•	902 - Assistive Technology Support
+

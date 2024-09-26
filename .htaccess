@@ -1,0 +1,8 @@
+<Files "subscribe.php">
+    Deny from all
+</Files>
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^help/([0-9]+)$ /help/$1.html [L]

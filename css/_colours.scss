@@ -13,13 +13,15 @@ $colour__grey__black: #000000;
 
 $colour_brand_primary: #f75200;
 $colour_brand_secondary: rgb(75, 0, 128);
+$colour_brand_tertiary: #007bff;
 
-$colour_page_background: $colour__grey__100;
+$colour_page_background: #f8f8f8;
 
 //Fonts
 $colour_text_primary: $colour__grey__black;
 $colour_text_secondary: $colour__grey__900;
-
+$colour_text_link-primary: $colour_brand_primary;
+$colour_text_link-secondary: $colour_brand_tertiary;
 //Drop shadows
 $colour_text_shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 $shadow-key-features-box: -2px 7px 24px rgba(0, 0, 0, 0.6);

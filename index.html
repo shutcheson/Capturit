@@ -3,46 +3,142 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Capturit</title>
     <link rel="stylesheet" href="css/style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
+    
+    <!-- Primary Favicon -->
+    <link rel="icon" href="img/icons/capturit-icon-gradient-background-512.svg" type="image/svg+xml">
+    <!-- Fallback for Legacy Browsers -->
+    <link rel="shortcut icon" href="img/icons/capturit-icon-gradient.ico" type="image/x-icon">
+    <!-- For Safari on iOS -->
+    <link rel="apple-touch-icon" href="img/icons/capturit-icon-gradient-background-180.svg" sizes="180x180">
+    <!-- For Google TV -->
+    <link rel="icon" href="img/icons/capturit-icon-gradient-background-192.svg" sizes="192x192" type="image/svg+xml">
+    <!-- For Microsoft Live Tiles -->
+    <link rel="msapplication-TileImage" href="img/icons/capturit-icon-gradient-background-192.svg" sizes="144x144">
+    <!-- For Safari Pinned Tab on macOS -->
+    <link rel="mask-icon" href="img/icons/capturit-icon-gradient-background-180.svg" color="#000000">
+
+      <!-- Open Graph meta tags -->
+    <meta property="og:title" content="Capturit">
+    <meta property="og:description" content="Welcome to the future of events planning">
+    <meta property="og:image" content="img/capturit-meta-icon.png">
+    <meta property="og:url" content="https://www.capturit.app">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JDJ2KLCD5Y"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-JDJ2KLCD5Y');
+  </script>
   </head>
   <body>
-    <!-- Nav Bar -->
-    <nav class="top-navbar">
-      <div class="nav-container">
-        <a href="#banner-section" class="nav-logo">Capturit</a> 
-        <div class="nav-links">
-          <a href="#about-section">About</a>
-          <a href="#features-section">Key Features</a>
-          <a href="#signup-section">Signup</a>
-        </div>
-      </div>
-    </nav>
+    
+<!-- Top Nav End -->
+<nav class="top-navbar">
+  <div class="nav-container">
+    <a href="/" class="nav-logo">
+      <img
+        src="../img/icons/capturit-icon-gradient-background-192.svg"
+        alt="Capturit logo"
+        class="logo-icon"
+      />
+    </a>
+    <div class="nav-links">
+      <a href="/#about-section">About</a>
+      <a href="/#features-section">Key Features</a>
+      <a href="/#signup-section">Signup</a>
+      <a href="/help/100.html">Help & Support</a>
 
-        <!-- Hamburger Menu -->
-    <div class="hamburger-menu">
-      <div class="hamburger-icon">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
     </div>
+    <div class="social-links">
+      <a
+        href="https://www.tiktok.com/@capturitapp"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Tiktok"
+      >
+        <img
+          src="../img/icons/tiktok-color-icon.svg"
+          alt="Tiktok link"
+          class="social-links__icon"
+        />
+      </a>
+      <a
+        href="https://www.instagram.com/capturitapp/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram"
+      >
+        <img
+          src="../img/icons/instagram-icon.svg"
+          alt="Instagram link"
+          class="social-links__icon"
+        />
+      </a>
+      <a
+        href="https://www.facebook.com/CapturitApp/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Facebook"
+      >
+        <img
+          src="../img/icons/facebook-icon.svg"
+          alt="Facebook link"
+          class="social-links__icon"
+        />
+      </a>
+    </div>
+  </div>
+</nav>
+<!-- Top Nav End -->
 
-<!-- Mobile Navigation -->
+<!-- Hamburger Menu Start-->
+<div class="hamburger-menu">
+  <div class="hamburger-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<!-- Hamburger Menu Start-->
+
+<!-- Mobile Navigation Start -->
 <div class="mobile-nav">
   <div class="mobile-nav-container">
-    <a href="#banner-section" class="nav-logo">Capturit</a>
+    <a href="/" class="nav-logo">
+      <img src="/img/icons/capturit-icon-gradient-background-192.svg" alt="Capturit logo" class="logo-icon" />
+    </a>
     <div class="mobile-nav-links">
-      <a href="#about-section">About</a>
-      <a href="#features-section">Key Features</a>
-      <a href="#signup-section">Signup</a>
+      <a href="/#about-section">Abouts</a>
+      <a href="/#features-section">Key Features</a>
+      <a href="/#signup-section">Signup</a>
+      <a href="/help/100.html">Help & Support</a>
+    </div>
+    <div class="mobile-nav-social-links">
+      <a href="https://www.tiktok.com/@capturitapp" target="_blank" rel="noopener noreferrer" aria-label="Instagram"></a>
+        <img src="/img/icons/tiktok-color-icon.svg" alt="Tiktok link" class="mobile-nav-social-links__icon" />
+      </a>
+      <a href="https://www.instagram.com/capturitapp/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"></a>
+        <img src="/img/icons/instagram-icon.svg" alt="Instagram link" class="mobile-nav-social-links__icon" />
+      </a>
+      <a href="https://www.facebook.com/CapturitApp/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <img src="/img/icons/facebook-icon.svg" alt="Facebook link" class="mobile-nav-social-links__icon" />
+      </a>
     </div>
   </div>
 </div>
+<!-- Mobile Navigation End -->
+
 
     <!-- Banner/ hero section-->
     <section class="banner__section" id="banner-section">
@@ -52,7 +148,7 @@
       <div
         class="hero__image-container hero__image-container--center"
         id="portrait-party">
-        <img src="img/portrait-party.jpg" alt="Image 4" />
+        <img src="img/portrait-party.jpg" alt="Capture your party" />
       </div>
       <div class="hero__image-container" id="landscape-trip">
         <img src="img/landscape-trip.jpg" alt="Capture your trip" />
@@ -84,7 +180,7 @@
           <div class="banner__row banner__row--3x">
               <div class="banner__box banner__box--half">
                   <div class="" id="banner__box--image">
-                    <img src="img/hero__mobile.png" alt="Mobile Mockup" />
+                    <img src="img/hero__mobile.png" alt="Capturit mobile app" />
                   </div>
               </div>
               
@@ -105,8 +201,11 @@
             </svg>
           </a>
         </div>
-        
       </div>
+      <a href="#banner-section" class="nav-logo">
+        <img src="img/icons/capturit-icon-gradient-background-dropshadow-512.png" alt="Capturit logo" class="banner__icon" />
+      </a>
+
     </section>
 
 
@@ -120,7 +219,7 @@
         <div class="intro__content">
     
           <div class="intro__image">
-            <img src="img/intro__mobile.png" alt="Capturit Mobile" class="intro__image">
+            <img src="img/intro__mobile.png" alt="Capturit Mobile App" class="intro__image ">
           </div>
 
           <div class="intro__text">
@@ -151,9 +250,14 @@
         </div>
         <div class="key-features__content">
           <div class="key-features__box">
-            <h4 class="key-features__box-title">Create memorable, detail-rich <span class="emphasise--primary">album events</span></h4>
-            <p class="key-features__box-description">Create and attend up and coming events, and keep all the events details in the one album.</p>
+            <h4 class="key-features__box-title">
+              Create memorable, detail-rich <span class="emphasise--primary">album events</span>
+            </h4>
+            <p class="key-features__box-description">
+              Create and attend up and coming events, and keep all the events details in the one album.
+            </p>
           </div>
+          
           <div class="key-features__box">
             <h4 class="key-features__box-title">Merge friends memories into one <span class="emphasise--primary">shared album</span></h4>
             <p class="key-features__box-description">Let your guests add their memories to the album, bringing everyone's best moments together.</p>
@@ -183,20 +287,41 @@
     <section class="sign-up__section" id="signup-section">
       <div class="sign-up__container">
         <div class="section__heading sign-up__heading">
-          <h2>Be Among the First to <span class="emphasise--primary">Capturit</span></h2>
+          <h2>Be Amongst the First to <span class="emphasise--primary">Capturit</span></h2>
         </div>
+        
         
         <div class="sign-up__content">
           
 
           <div class="sign-up__text">
-            <h3 class="intro__title">Your new events app</h2>
-            <p class="sign-up__description">Join our waitlist now and secure your spot as an early adopter of this revolutionary event experience platform. Gain exclusive access, insider updates, and be part of the journey as we redefine how memories are captured, saved, and shared.</p>
-            <form class="sign-up__form">
-              <input type="email" placeholder="Enter your email" required>
-              <button type="submit">Sign Up</button>
-            </form>
 
+
+            <h3 class="intro__title">Your new events app</h2>
+            <p class="sign-up__description">Join the waitlist now and secure your place among the first to experience this revolutionary event platform. Be an early adopter, gain exclusive access, insider access, and be part of the journey as we redefine how our most cherish memories are captured, saved, and shared.</p>
+            
+            <form class="sign-up__form2" id="signUpForm2">
+              <input type="text" placeholder="Firstname" required id="firstnameInput" name="firstname">
+              <input type="text" placeholder="Lastname" required id="lastnameInput" name="lastname">
+              <input type="email" placeholder="Email" required id="emailInput" name="email">
+              <button type="submit">Sign Up</button>
+          </form>
+          
+            <div class="sign-up__socials">
+              <div class="sign-up__socials--columns-1">
+                <h4>Follow us</h4>
+              </div>
+              <div class="sign-up__socials--columns-2">
+                <a href="https://www.tiktok.com/@capturitapp" target="_blank" rel="noopener noreferrer" aria-label="Tiktok">
+                  <img src="img/icons/tiktok-color-icon.svg" alt="Tiktok link" class="social-links__icon" />
+                </a>
+                <a href="https://www.instagram.com/capturitapp/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                  <img src="img/icons/instagram-icon.svg" alt="Instagram link" class="social-links__icon" />
+                </a>
+                
+              </div>
+            </div>
+            
           </div>
 
           <div class="sign-up__image">
@@ -215,13 +340,39 @@
       <nav class="sign-up__bottom-navbar">
         <div class="nav-container">
           <div class="nav-links">
-            <a href="#privacySection">Privacy</a>
-            <a href="#copyrightSection">Copyright</a>
+            <a href="/help/100.html">Help & Support</a>
+            <a href="#privacySection" class="hidden">Privacy</a>
+            <a href="#copyrightSection" class="hidden">Copyright</a>
           </div>
         </div>
       </nav>
     </section>
 
-    <script src="js/script.js"></script>
+    <div id="popup-container" class="popup-container">
+      <img src="img/icons/capturit-icon-gradient-background-dropshadow-512.png" alt="Popup capturit logo">
+      <p>You are now on the waitlist</p>
+      <button class="cta close-popup">Back to Capturit</button>
+  </div>
+  
+  <div id="popup-container-already-exists" class="popup-container" style="display: none;">
+    <img src="img/icons/capturit-icon-gradient-background-dropshadow-512.png" alt="Popup capturit logo">
+    <p>Your email is already on the waitlist</p>
+    <button class="cta close-popup">Back to Capturit</button>
+  </div>
+
+  <div id="popup-container-issue" class="popup-container" style="display: none;">
+    <img src="img/icons/capturit-icon-gradient-background-dropshadow-512.png" alt="Popup Image logo">
+    <p>Hmmm, we seem to be having an issue</p>
+    <button class="cta close-popup">Please try again</button>
+  </div>
+
+  
+  
+  
+
+  
+
+    <script src="/scripts/script.js"></script>
+    <script src="/scripts/script-image.js"></script>
   </body>
 </html>

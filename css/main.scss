@@ -1,5 +1,7 @@
 @import "colours";
+@import "components";
 @import "typography";
+@import "help/help";
 
 // Define Breakpoints as Variables
 $desktop-x-large: 3480px;
@@ -50,8 +52,33 @@ body {
   background-color: $colour_page_background;
 }
 
-//dfsnfksdz
-/* Webkit Scrollbar custom styles */
+html {
+  overflow-y: scroll;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  text-decoration: none;
+
+  li {
+    margin-bottom: 0.5rem;
+
+    a {
+      color: $colour__grey__900 !important;
+      text-decoration: none;
+      background-color: transparent;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+/*
+Webkit Scrollbar custom styles 
+*/
 ::-webkit-scrollbar {
   width: 12px;
 }
@@ -73,20 +100,29 @@ body {
   background-color: $colour__grey__black;
   color: $colour__grey__white;
   text-decoration: none;
-  padding: 0.5rem 6rem !important;
+  padding: 0.7rem 6rem;
   border-radius: 40px;
-  font-size: 2rem;
+  font-size: 1.8rem;
   cursor: pointer;
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
-
+  transition: transform 0.2s ease-in-out;
   &:hover {
-    background-color: darken($colour__grey__black, 10%);
+    transform: scale(1.01);
+  }
+  &:active {
+    transform: scale(0.99) translateY(1px);
   }
 
-  &:active {
-    transform: scale(0.95) translateY(6px);
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+  // Breakpoint: Tablet landscape
+  @include respond-to(tablet-landscape) {
+    padding: 0.8rem 6rem;
+    font-size: 1.8rem;
+  }
+
+  // Breakpoint: Mobile large portrait
+  @include respond-to(mobile-portrait-large) {
+    padding: 0.8rem 5rem;
+    font-size: 1.6rem;
   }
 }
 
@@ -100,6 +136,7 @@ body {
   // Breakpoint: Tablet landscape
   @include respond-to(tablet-landscape) {
     left: 48%;
+    bottom: 40px;
   }
   // Breakpoint: Mobile large portrait
   @include respond-to(mobile-portrait-large) {
@@ -149,12 +186,16 @@ body {
   }
 }
 
-/* Click down effect */
+/*
+Click down effect
+*/
 .scroll-down-arrow.clicked {
   transform: translateY(-5px);
 }
 
-//Top Nav Bar
+/*
+Top Nav Bar
+*/
 .top-navbar {
   background-color: rgba(243, 243, 243, 0.3);
   backdrop-filter: blur(2px);
@@ -172,12 +213,13 @@ body {
     padding: 0 20px;
     max-width: 1200px;
     margin: 0 auto;
-    height: 50px;
+    height: 56px;
 
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
       height: 34px;
     }
+
     // Breakpoint: Tablet landscape
     @include respond-to(mobile-portrait-large) {
       display: none;
@@ -195,7 +237,7 @@ body {
       display: flex;
       justify-content: space-between;
       flex-grow: 1;
-      max-width: 30%;
+      max-width: 50%;
 
       a {
         color: $colour_text_secondary;
@@ -208,6 +250,7 @@ body {
         @include respond-to(tablet-landscape) {
           font-size: 1.3rem;
         }
+
         // Breakpoint: Tablet landscape
         @include respond-to(mobile-portrait-large) {
           font-size: 1.3rem;
@@ -219,10 +262,52 @@ body {
         }
       }
     }
+
+    .social-links {
+      display: flex;
+      align-items: center;
+
+      &__icon {
+        height: 2.4rem;
+        width: auto;
+        margin-right: 2rem;
+        text-decoration: none;
+
+        &:hover {
+          height: 2.5rem;
+        }
+        &:active {
+          height: 2.4rem;
+        }
+      }
+
+      a {
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
   }
 }
 
-// Hamburger Menu
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  // Breakpoint: Tablet landscape
+  @include respond-to(tablet-landscape) {
+    height: 28px;
+    width: 28px;
+  }
+  // Breakpoint: Mobile large portrait
+  @include respond-to(mobile-portrait-large) {
+    height: 48px;
+    width: 48px;
+  }
+}
+
+/*
+Hamburger Menu
+*/
 .hamburger-menu {
   display: none;
 
@@ -236,6 +321,11 @@ body {
     z-index: 1000;
 
     .hamburger-icon {
+      transition: transform 0.2s ease-in-out;
+
+      &:active {
+        transform: scale(0.99) translateY(1px);
+      }
       span {
         display: block;
         width: 24px;
@@ -251,9 +341,10 @@ body {
   }
 }
 
-// Mobile Navigation
+/*
+Mobile Navigation
+*/
 .mobile-nav {
-  display: none;
   position: fixed;
   top: -100%;
   left: 0;
@@ -262,17 +353,16 @@ body {
   background-color: rgba(243, 243, 243, 0.8);
   backdrop-filter: blur(2px);
   z-index: 999;
-  overflow: hidden;
   transition: top 0.3s ease-in-out;
+  overflow: hidden; // Ensures no internal scrolling within the nav
+
+  &.show {
+    top: 0;
+  }
 
   // Breakpoint: Tablet portrait
   @include respond-to(tablet-landscape) {
     display: block;
-    position: fixed;
-
-    &.show {
-      top: 0;
-    }
 
     .mobile-nav-container {
       display: flex;
@@ -280,8 +370,7 @@ body {
       align-items: center;
       padding: 20px;
       height: 100%;
-      position: sticky;
-      top: 0;
+      position: relative;
 
       .nav-logo {
         font-size: 2rem;
@@ -313,10 +402,119 @@ body {
   }
 }
 
+// Utility class to prevent scrolling
+.no-scroll {
+  overflow: hidden;
+  height: 100%;
+}
+
+.mobile-nav-social-links {
+  display: flex;
+  align-items: center;
+
+  &__icon {
+    height: 3.6rem;
+    width: auto;
+    margin: 2rem;
+    text-decoration: none;
+
+    &:hover {
+      height: 3.5rem;
+    }
+    &:active {
+      height: 3.5rem;
+    }
+  }
+}
+
 .mobile--remove {
   // Breakpoint: Mobile large portrait
   @include respond-to(mobile-portrait-large) {
     display: none !important;
+  }
+}
+
+// Sidebar styles
+.sidebar {
+  height: 100vh;
+  width: 270px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 100px;
+  overflow-y: auto;
+
+  @include respond-to(mobile-portrait-large) {
+    display: none;
+  }
+}
+
+// Sidebar mobile
+.sidebar-mobile {
+  display: none;
+
+  @include respond-to(mobile-portrait-large) {
+    display: block;
+    height: 100vh;
+    width: 260px;
+    position: fixed;
+    left: -260px; // Start off-screen
+    top: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 100px;
+    overflow-y: auto;
+    background-color: rgba(243, 243, 243, 0.9);
+    transition: left 0.3s ease-in-out;
+    backdrop-filter: blur(2px);
+    z-index: 999;
+  }
+
+  &.show {
+    left: 0;
+  }
+}
+
+// Utility class to prevent scrolling
+.no-scroll {
+  overflow: hidden;
+  height: 100%;
+}
+
+// Help menu
+.help-menu {
+  display: none;
+
+  @include respond-to(mobile-portrait-large) {
+    display: block;
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 1000;
+
+    .help-icon {
+      span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background-color: $colour_text_primary;
+        margin-bottom: 5px;
+        transition: transform 0.2s ease-in-out;
+      }
+
+      img {
+        width: 26px;
+        height: auto;
+        transition: transform 0.2s ease-in-out;
+
+        &:active {
+          transform: scale(0.99) translateY(1px);
+        }
+      }
+    }
   }
 }
 
@@ -348,21 +546,24 @@ $unitHeight: calc(100vh / 8);
 
     // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
-      height: 100vh;
+      height: 100%;
       max-height: 900px;
     }
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
-      height: 100vh;
+      height: 100%;
       max-height: 800px;
     }
 
     // Breakpoint: Tablet landscape
     @include respond-to(mobile-portrait-large) {
-      height: 100vh;
+      height: 100%;
       overflow: hidden;
       max-height: none;
       overflow-x: hidden;
+      height: auto;
+      max-height: none;
+      margin-top: 30px;
     }
   }
 
@@ -414,6 +615,10 @@ $unitHeight: calc(100vh / 8);
     @include respond-to(desktop-small) {
       padding: 5px 0;
     }
+    // Breakpoint: Mobile large portrait
+    @include respond-to(mobile-portrait-large) {
+      margin-bottom: 20px;
+    }
 
     & img {
       // Breakpoint: Mobile large portrait
@@ -464,9 +669,14 @@ $unitHeight: calc(100vh / 8);
     }
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
-      font-size: 2rem;
+      font-size: 3rem;
       margin-bottom: 14px;
+      background-color: rgba(255, 255, 255, 0.148);
+      padding: 6px;
+      backdrop-filter: blur(2px);
+      border-radius: 10px;
     }
+
     // Breakpoint: Mobile large portrait
     @include respond-to(mobile-portrait-large) {
       text-align: center;
@@ -533,34 +743,30 @@ $unitHeight: calc(100vh / 8);
     }
   }
 
-  &__cta {
-    background-color: $colour__grey__black;
-    color: $colour__grey__white;
-    text-decoration: none;
-    padding: 6px 70px 6px !important;
-    border-radius: 40px;
-    font-size: 2rem;
-    cursor: pointer;
-    transition: transform 0.1s ease, box-shadow 0.1s ease;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
-
-    &:active {
-      transform: scale(0.95) translateY(3px);
-      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+  &__icon {
+    position: absolute;
+    right: 50px;
+    bottom: 6%;
+    height: 150px;
+    position: fixed;
+    z-index: 8888;
+    transition: transform 0.2s ease-in-out;
+    &:hover {
+      transform: scale(1.01);
     }
-
-    // Breakpoint: Small desktop
-    @include respond-to(desktop-small) {
-      padding: 5px 53px 6px !important;
-      font-size: 1.6rem;
+    &:active {
+      transform: scale(0.99) translateY(1px);
     }
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
-      padding: 4px 38px 5px !important;
+      height: 90px;
+      right: 36px;
     }
     // Breakpoint: Mobile large portrait
     @include respond-to(mobile-portrait-large) {
-      padding: 5px 38px 6px !important;
+      height: 50px;
+      right: 10px;
+      bottom: 10px;
     }
   }
 }
@@ -577,6 +783,9 @@ $unitHeight: calc(100vh / 8);
   @include respond-to(desktop-x-large) {
     margin-top: 60px;
   }
+  // Breakpoint: Medium desktop
+  @include respond-to(desktop-medium) {
+  }
 
   // Breakpoint: Small desktop
   @include respond-to(desktop-small) {
@@ -585,7 +794,8 @@ $unitHeight: calc(100vh / 8);
   }
   // Breakpoint: Tablet landscape
   @include respond-to(tablet-landscape) {
-    margin-top: 10px;
+    margin-top: 16px;
+    margin-left: -54px;
   }
   // Breakpoint: Mobile large portrait
   @include respond-to(mobile-portrait-large) {
@@ -595,25 +805,39 @@ $unitHeight: calc(100vh / 8);
 }
 
 #banner__box--image {
-  height: 100%;
+  height: 106%;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 40px;
+  margin-top: 80px;
+  max-height: 480px;
+
+  // Breakpoint: Tablet landscape
+  @include respond-to(tablet-landscape) {
+    height: 130%;
+    margin-top: 40px;
+    max-height: 380px;
+  }
+
+  // Breakpoint: Mobile large portrait
+  @include respond-to(mobile-portrait-large) {
+    height: 120%;
+  }
   img {
-    height: 145%;
+    height: 100%;
     width: auto;
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
       margin-left: -42px;
-      bottom: 10px;
       position: relative;
-      height: 165%;
+      height: 100%;
       max-height: 500px;
     }
     // Breakpoint: Mobile large portrait
     @include respond-to(mobile-portrait-large) {
-      height: 138%;
-      margin-left: 20px;
+      height: 80%;
+      margin-left: 50px;
       margin-top: -40px;
     }
   }
@@ -645,7 +869,7 @@ $unitHeight: calc(100vh / 8);
       // Breakpoint: Tablet landscape
       @include respond-to(tablet-landscape) {
         margin-top: -26px;
-        font-size: 4.8rem;
+        font-size: 4.6rem;
       }
 
       // Breakpoint: Mobile large portrait
@@ -734,7 +958,7 @@ $unitHeight: calc(100vh / 8);
   right: 0;
   width: 33%;
   height: auto;
-  z-index: -1;
+  z-index: 666;
 
   // Breakpoint: Small desktop
   @include respond-to(desktop-small) {
@@ -796,6 +1020,7 @@ $unitHeight: calc(100vh / 8);
 //
 .intro {
   padding: 0;
+  max-height: 080px;
 
   &__section {
     // Breakpoint: Medium desktop
@@ -804,26 +1029,26 @@ $unitHeight: calc(100vh / 8);
     }
     // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
-      height: 100vh;
+      height: 100%;
       max-height: 900px;
     }
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
       padding-top: 40px;
-      height: 100vh;
+      height: 100%;
       max-height: 1100px;
     }
     // Breakpoint: Mobile large portrait
     @include respond-to(mobile-portrait-large) {
       height: auto;
       max-height: none;
-      padding-bottom: 280px;
+      padding-bottom: 200px;
       padding-top: 100px;
     }
   }
 
   &__container {
-    height: 100vh;
+    height: 100%;
     max-height: 1080px;
     width: 100%;
     margin: 0 auto; // Centering the container.
@@ -843,7 +1068,7 @@ $unitHeight: calc(100vh / 8);
     }
     // Breakpoint: Mobile large portrait
     @include respond-to(mobile-portrait-large) {
-      padding-top: 200px;
+      padding-top: 60px;
     }
   }
 
@@ -915,17 +1140,21 @@ $unitHeight: calc(100vh / 8);
 
   &__image {
     flex: 1;
-    max-width: 33.333%;
     text-align: right;
     padding-right: 40px;
+    max-height: 600px;
+    transition: transform 0.4s ease, box-shadow 0.3s ease;
 
-    // Breakpoint: Small desktop
+    img {
+      max-height: 100%;
+      transition: transform 0.4s ease, box-shadow 0.3s ease;
+    }
+
     @include respond-to(desktop-small) {
       padding-right: 24px;
-      // max-width: 82%;
       margin-bottom: 23px;
     }
-    // Breakpoint: Mobile large portrait
+
     @include respond-to(mobile-portrait-large) {
       display: flex;
       flex-direction: column;
@@ -933,24 +1162,27 @@ $unitHeight: calc(100vh / 8);
       align-items: center;
       padding-right: 0;
       margin-bottom: 10px;
-      max-width: 100%;
     }
 
     img {
-      max-width: 90%;
-      height: auto;
+      max-width: 100%; /* Set the maximum width of the image to 100% */
+      height: auto; /* Maintain aspect ratio */
+      width: auto; /* Ensure the image does not exceed its container */
+      margin-left: auto; /* Center the image horizontally */
+      margin-right: auto; /* Center the image horizontally */
 
       @include respond-to(desktop-small) {
-        max-width: 70%;
+        max-width: 100%; /* Adjust for small desktop */
       }
-      // Breakpoint: Tablet landscape
+
       @include respond-to(tablet-landscape) {
-        max-width: 76%;
+        max-width: 72%; /* Adjust for tablet landscape */
       }
-      // Breakpoint: Mobile large portrait
+
       @include respond-to(mobile-portrait-large) {
-        max-width: 74%;
-        margin-left: -28px;
+        max-width: 100%;
+        width: 300px;
+        margin-left: -10px; /* Reset margin for mobile */
       }
     }
   }
@@ -992,17 +1224,11 @@ $unitHeight: calc(100vh / 8);
     background-color: $colour__grey__black;
     color: $colour__grey__white;
     text-decoration: none;
-    padding: 6px 70px 6px !important;
     border-radius: 40px;
     font-size: 2rem;
     cursor: pointer;
-    transition: transform 0.1s ease, box-shadow 0.1s ease;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
 
-    &:active {
-      transform: scale(0.95) translateY(3px);
-      box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
-    }
     // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
       font-size: 2rem;
@@ -1010,14 +1236,12 @@ $unitHeight: calc(100vh / 8);
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
       font-size: 1.6rem;
-      padding: 4px 52px 5px !important;
     }
     // Breakpoint: Mobile large portrait
     @include respond-to(mobile-portrait-large) {
       align-items: center;
       display: flex;
       justify-content: center;
-      padding: 8px 38px 6px;
       width: 130px;
     }
   }
@@ -1030,7 +1254,6 @@ $unitHeight: calc(100vh / 8);
 // Key features Section Styles
 .key-features {
   padding-top: 0;
-
   overflow: visible;
 
   &__section {
@@ -1045,7 +1268,7 @@ $unitHeight: calc(100vh / 8);
 
     // Breakpoint: Medium desktop
     @include respond-to(desktop-medium) {
-      height: 137vh;
+      height: 137%;
       max-height: 1470px;
     }
 
@@ -1067,8 +1290,8 @@ $unitHeight: calc(100vh / 8);
       height: auto;
       max-height: none;
       background-repeat: repeat;
-      padding-bottom: 4.4rem;
-      padding-top: 0px;
+      padding-bottom: 100px;
+      padding-top: 20px;
     }
   }
 
@@ -1155,6 +1378,18 @@ $unitHeight: calc(100vh / 8);
     align-items: flex-start;
     box-shadow: $shadow-key-features-box;
 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-0.7px) scale(1.01); // Soft lift effect on hover
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // Optional shadow for more emphasis
+    }
+
+    &:active {
+      transform: translateY(-0.7px) scale(0.98); // Click effect: slight downward and shrink
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); // Adjust shadow to match click effect
+    }
+
     // Breakpoint: Small desktop
     @include respond-to(desktop-small) {
       padding: 34px;
@@ -1167,6 +1402,7 @@ $unitHeight: calc(100vh / 8);
 
   &__box-title {
     margin-bottom: 28px;
+    width: 100%;
 
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
@@ -1202,7 +1438,7 @@ $unitHeight: calc(100vh / 8);
 
     // Breakpoint: Medium desktop
     @include respond-to(desktop-medium) {
-      max-height: 1080px;
+      max-height: 900px;
     }
 
     // Breakpoint: Tablet landscape
@@ -1241,6 +1477,7 @@ $unitHeight: calc(100vh / 8);
     @include respond-to(mobile-portrait-large) {
       height: auto;
       width: 100%;
+      padding-bottom: 100px;
     }
   }
 
@@ -1306,7 +1543,8 @@ $unitHeight: calc(100vh / 8);
 
   &__image {
     flex: 1;
-    max-width: 33.333%;
+    // max-width: 33.333%;
+    height: 100%;
     text-align: right;
     padding-right: 40px;
     // Breakpoint: Tablet landscape
@@ -1316,12 +1554,11 @@ $unitHeight: calc(100vh / 8);
       // Breakpoint: Mobile large portrait
       @include respond-to(mobile-portrait-large) {
         max-width: 100%;
-        // margin-left: -32px;
       }
     }
 
     img {
-      max-width: 97%;
+      max-width: 100%;
       height: auto;
 
       // Breakpoint: Tablet landscape
@@ -1334,6 +1571,11 @@ $unitHeight: calc(100vh / 8);
         max-width: 90%;
       }
     }
+  }
+
+  &__icon {
+    height: 120px;
+    margin-bottom: 0px;
   }
 
   &__text {
@@ -1359,7 +1601,7 @@ $unitHeight: calc(100vh / 8);
   &__description {
     font-size: 2rem;
     color: $colour_text_secondary;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     line-height: 1.5;
     text-align: justify;
     width: 100%;
@@ -1375,12 +1617,6 @@ $unitHeight: calc(100vh / 8);
   }
 
   &__form {
-    display: flex;
-    margin: 1rem 0;
-    width: 80%;
-    border: 1px solid $colour__grey__900;
-    border-radius: 40px;
-
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
       height: 32px;
@@ -1388,21 +1624,11 @@ $unitHeight: calc(100vh / 8);
     // Breakpoint: Mobile large portrait
     @include respond-to(mobile-portrait-large) {
       width: 100%;
-      height: 30px;
+      font-size: 1.6rem;
     }
 
     input,
     button {
-      text-decoration: none;
-      padding: 8px 56px;
-      font-size: 1.8rem;
-      cursor: pointer;
-      border: 2px black;
-      outline: none;
-      border-radius: 40px;
-      transition: transform 0.1s ease, box-shadow 0.1s ease;
-      font-family: $body-font-family;
-
       // Breakpoint: Small desktop
       @include respond-to(desktop-small) {
         font-size: 1.4rem;
@@ -1416,8 +1642,8 @@ $unitHeight: calc(100vh / 8);
       }
       // Breakpoint: Mobile large portrait
       @include respond-to(mobile-portrait-large) {
-        font-size: 1.2rem;
-        padding: 0px 20px;
+        font-size: 1.6rem;
+        padding: 1rem 2rem;
       }
     }
 
@@ -1455,14 +1681,13 @@ $unitHeight: calc(100vh / 8);
       }
       // Breakpoint: Tablet landscape
       @include respond-to(tablet-landscape) {
-        font-size: 1.2rem;
         padding: 0px 32px 0px;
       }
       // Breakpoint: Mobile large portrait
       @include respond-to(mobile-portrait-large) {
-        font-size: 1.2rem;
-        width: 28%;
+        width: 30%;
         padding: 0px 17px 0px;
+        font-weight: 400;
       }
 
       // Button hover state
@@ -1471,24 +1696,86 @@ $unitHeight: calc(100vh / 8);
       }
     }
   }
+  &__form2 {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    background-color: transparent;
 
+    input[type="text"],
+    input[type="email"],
+    button {
+      margin-bottom: 1rem;
+      transition: border 0.3s ease-in-out;
+      border: 1px solid $colour__grey__500;
+      color: $colour__grey__400;
+      padding: 6px 30px;
+      font-size: 1.4rem;
+      cursor: pointer;
+      border-radius: 12px;
+      letter-spacing: 1px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    button {
+      text-decoration: none;
+      padding: 8px 56px;
+      font-size: 1.6rem;
+      color: $colour__grey__100;
+      cursor: pointer;
+      border: 2px black;
+      outline: none;
+      border-radius: 40px;
+      transition: transform 1.3s ease-in-out, box-shadow 0.1s ease;
+      font-family: $body-font-family;
+      background-color: $colour__grey__900;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+
+      &:hover {
+        background-color: $colour__grey__black;
+        transform: translateY(-0.7px) scale(1.01);
+      }
+
+      &:active {
+        transform: translateY(-0.7px) scale(0.98);
+      }
+    }
+
+    @include respond-to(mobile-portrait-large) {
+      width: 90%;
+      margin: 0 auto;
+    }
+  }
   &__bottom-navbar {
     position: relative;
     bottom: 0;
     left: 0;
     width: 100%;
+    max-width: 1200px;
     background-color: $colour_page_background;
-    border-top: 1px solid $colour__grey__500;
 
     // Breakpoint: Tablet landscape
     @include respond-to(tablet-landscape) {
       height: 40px;
     }
 
+    @include respond-to(mobile-portrait-large) {
+      position: relative;
+      &::before {
+        content: "";
+        position: absolute;
+        width: 84%;
+        border-top: 1px solid $colour__grey__500;
+      }
+    }
+
     .nav-container {
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       padding: 0 20px;
       max-width: 1200px;
       margin: 0 auto;
@@ -1496,13 +1783,16 @@ $unitHeight: calc(100vh / 8);
       .nav-links {
         display: flex;
         align-items: center;
-        justify-content: start;
-        width: 33%;
+        width: 84%;
+        justify-content: space-between;
+        flex-grow: 1;
+        max-width: 50%;
 
         a {
           text-decoration: none;
           color: $colour_text_secondary;
           font-size: 1.6rem;
+          font-weight: normal;
           margin-right: 20px;
           margin-right: 40%;
 
@@ -1528,9 +1818,15 @@ $unitHeight: calc(100vh / 8);
     .nav-container {
       .nav-links {
         a {
+          color: $colour_text_secondary;
+          font-weight: 500;
+          text-decoration: none;
+          font-size: 1.4rem;
+          transition: color 0.1s ease-in-out, font-weight 0.1s ease-in-out;
+
           // Breakpoint: Tablet landscape
           @include respond-to(tablet-landscape) {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
           }
 
           &:hover {
@@ -1541,13 +1837,64 @@ $unitHeight: calc(100vh / 8);
       }
     }
   }
+
+  &__columns {
+    width: 50%;
+  }
+
+  &__socials {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.6rem;
+
+    &--columns {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &-1 {
+        flex: 1;
+        justify-content: left;
+        padding-left: 30px;
+      }
+
+      &-2 {
+        flex: 1;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+      }
+    }
+
+    a {
+      margin-right: 3.4rem;
+      text-decoration: none;
+
+      img {
+        height: 3.4rem;
+        width: auto;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+          transform: translateY(-0.7px) scale(1.01); // Soft lift effect on hover
+          // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // Optional shadow for more emphasis
+        }
+
+        &:active {
+          transform: translateY(-0.7px) scale(0.98); // Click effect: slight downward and shrink
+          // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); // Adjust shadow to match click effect
+        }
+      }
+    }
+  }
 }
 
 .countdown {
   &__timer {
     &--second {
       position: absolute;
-      top: 33%;
+      top: 25%;
       left: 35%;
       max-width: 33.333%;
       transform: translate(-50%, -50%);
@@ -1567,15 +1914,17 @@ $unitHeight: calc(100vh / 8);
 
       // Breakpoint: Small desktop
       @include respond-to(desktop-small) {
-        top: 31%;
+        top: 25%;
         left: 37%;
+        font-weight: 700;
       }
 
       // Breakpoint: Tablet landscape
       @include respond-to(tablet-landscape) {
-        top: 31%;
+        top: 25%;
         left: 45%;
         font-size: 1.2rem;
+        font-weight: 600;
       }
       // Breakpoint: Mobile large portrait
       @include respond-to(mobile-portrait-large) {
@@ -1586,4 +1935,78 @@ $unitHeight: calc(100vh / 8);
       }
     }
   }
+}
+
+// Popup Container Styles
+.popup-container {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  padding: 40px 60px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: -12px 38px 33px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+
+  img {
+    max-width: 80px;
+    margin-bottom: 40px;
+  }
+
+  p {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+}
+
+/*
+Scrollable gradient chat 
+*/
+.body-scroll {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background: none;
+}
+
+.chat-container {
+  width: 300px;
+  height: 500px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #000;
+  color: #ffffff;
+}
+
+.chat-bubble {
+  background: #330b95;
+  padding: 10px 15px;
+  margin: 10px 0;
+  border-radius: 15px;
+  position: relative;
+  display: inline-block; /* Ensures the bubble only takes as much width as the content */
+  max-width: 80%; /* Limits the width of the bubble */
+  word-wrap: break-word;
+  transition: background 0.2s;
+  font-size: 1.2rem;
+  letter-spacing: 0.1rem;
+  font-weight: 300;
+}
+
+.left {
+  align-self: flex-start;
+  margin-left: 1rem;
+}
+
+.right {
+  align-self: flex-end;
+  margin-right: 1rem;
 }

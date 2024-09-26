@@ -1,0 +1,15 @@
+# Access control rules
+<Files "subscribe.php">
+    Deny from all
+</Files>
+
+RewriteEngine On
+
+# Redirect from .html to clean URLs
+RewriteCond %{THE_REQUEST} /help/([0-9]+)\.html [NC]
+RewriteRule ^help/([0-9]+)\.html$ /help/$1 [R=301,L]
+
+# Serve .html files for clean URLs
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^help/([0-9]+)$ /help/$1.html [L]

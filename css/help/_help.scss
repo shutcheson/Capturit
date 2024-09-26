@@ -1,0 +1,204 @@
+@import "../colours";
+@import "../components";
+@import "../typography";
+
+html {
+  overflow-y: scroll;
+}
+
+// Main content styles //
+.main-content {
+  margin-left: 270px;
+  padding: 20px;
+  width: calc(100% - 270px);
+  min-height: calc(100vh - 46px) !important;
+
+  // a {
+  //   color: $colour_text_link-secondary !important;
+  // }
+
+  &__heading {
+    margin-bottom: 60px;
+
+    h2 {
+      margin-top: 40px;
+      margin-bottom: 20px;
+    }
+  }
+
+  @include respond-to(mobile-portrait-large) {
+    width: 100%;
+    margin-left: 0;
+    padding: 50px 20px 20px 20px;
+  }
+}
+
+.content-area {
+  max-width: 1140px; // Set max-width for the content
+  width: 100%;
+  margin: 0 auto; // Center the content
+
+  h4 {
+    margin-bottom: 30px;
+  }
+
+  h5 {
+    margin-bottom: 10px;
+  }
+
+  ul {
+    font-size: 1.6rem !important;
+
+    li {
+      margin-bottom: 12px;
+    }
+  }
+
+  &__section {
+    margin-bottom: 60px;
+
+    p {
+      margin-right: 20px;
+      font-weight: normal;
+    }
+
+    a {
+      color: $colour_text_link-secondary;
+      &:hover {
+        font-weight: 500;
+        text-decoration: none;
+        color: $colour_text_link-secondary;
+      }
+    }
+
+    &__sub {
+      margin-bottom: 30px;
+    }
+  }
+}
+
+// Help section styles //
+.help-section {
+  .section-title {
+    font-size: 1.6rem !important;
+    margin-bottom: 1.4rem;
+    border-bottom: 1px solid $colour__grey__200;
+    padding-bottom: 0.5rem;
+  }
+
+  .section-content {
+    padding-left: 0;
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+
+    li {
+      margin-bottom: 0.5rem;
+
+      a {
+        display: block;
+        padding: 16px;
+        text-decoration: none;
+        font-size: 1.4rem;
+
+        @include respond-to(mobile-portrait-large) {
+          font-size: 1.6rem;
+        }
+
+        &:hover {
+          text-decoration: none;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.please-note {
+  color: $colour_brand_primary !important;
+}
+
+// FAQ Dropdowns
+.faq-container {
+  padding: 20px;
+}
+
+.faq-section {
+  margin-bottom: 15px;
+}
+
+.content-area__ul {
+  list-style-type: none;
+  padding: 0;
+
+  li {
+    margin-bottom: 10px;
+    margin-left: 20px;
+
+    .dropdown-btn {
+      background-color: rgba(243, 243, 243, 0.8);
+      padding: 10px;
+      cursor: pointer;
+      border: none !important;
+      border-radius: 20px;
+      width: 100%;
+      text-align: left;
+      transition: background-color 0.3s ease, border-radius 0.3s ease;
+
+      &:focus {
+        outline: none !important;
+      }
+
+      &:hover {
+        background-color: rgba(243, 243, 243);
+      }
+
+      &.active {
+        border-radius: 20px 20px 0 0;
+      }
+
+      strong {
+        display: inline-block;
+        width: 100%;
+      }
+    }
+
+    .dropdown-content {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      padding: 0 10px;
+      border-radius: 0 0 20px 20px;
+      background-color: rgb(243, 243, 243);
+      transition: max-height 0.1s ease-out, opacity 0.1s ease-out,
+        padding 0.3s ease-out;
+
+      p {
+        padding-bottom: 8px;
+      }
+
+      ul {
+        padding-bottom: 8px;
+      }
+
+      &.active {
+        opacity: 1;
+        max-height: 500px;
+        padding: 10px;
+        transition: max-height 0.1s ease-in, opacity 0.1s ease-in,
+          padding 0.3s ease-in;
+      }
+    }
+  }
+}
+
+.highlight {
+  font-weight: bold;
+  color: #333; // Adjust as needed
+}
