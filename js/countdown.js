@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }, 1000);
   }
 
-  const countDownDate = new Date("jul 01, 2024 00:00:00").getTime();
+  const countDownDate = new Date("mar 01, 2025 00:00:00").getTime();
 
   startCountdown(".countdown__timer--first", countDownDate);
   startCountdown(".countdown__timer--second", countDownDate);
